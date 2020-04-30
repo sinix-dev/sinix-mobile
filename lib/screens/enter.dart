@@ -6,6 +6,14 @@ class EnterPage extends StatefulWidget {
 }
 
 class _EnterPageState extends State<EnterPage> {
+  final ipController = TextEditingController();
+
+  @override
+  void dispose(){
+    ipController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,13 +44,16 @@ class _EnterPageState extends State<EnterPage> {
                       hintText: "Sinix Game IP Address"
                     ),
                     keyboardType: TextInputType.number,
+                    controller: ipController,
                   ),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 RaisedButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    print(ipController.text);
+                  },
                   child: Text("Connect!"),
                 )
               ],

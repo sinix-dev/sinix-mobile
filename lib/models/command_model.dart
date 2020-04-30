@@ -1,3 +1,7 @@
+const CommandTypeMapping = {
+  'turn': CommandType.TURN,
+};
+
 
 class Command {
   CommandType _type;
@@ -5,8 +9,8 @@ class Command {
   int _uid;
 
   Command(Map<String, dynamic> dataObj){
-    this._type = CommandType.TURN;
-    this._value = dataObj["value"];
+    this._type = CommandTypeMapping[dataObj['type']];
+    this._value = dataObj['value'];
   }
 
   CommandType get type => _type;
@@ -15,7 +19,7 @@ class Command {
 }
 
 class CommandType {
-  static const TURN = CommandType._("TURN");
+  static const TURN = CommandType._('TURN');
 
   const CommandType._(this.name);
 
