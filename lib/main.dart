@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:sinix_remote/screens/enter.dart';
+import 'package:sinix_remote/screens/home.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,12 +16,22 @@ class MyApp extends StatelessWidget {
     ]);
     SystemChrome.setEnabledSystemUIOverlays([]);
 
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Sinix Remote',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: EnterPage(),
+      initialRoute: '/enter',
+      getPages: [
+        GetPage(
+          page: () => EnterPage(),
+          name: '/enter',
+        ),
+        GetPage(
+          page: () => HomePage(),
+          name: '/home',
+        ),
+      ],
     );
   }
 }

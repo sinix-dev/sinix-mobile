@@ -1,6 +1,8 @@
+import 'dart:convert';
+import 'package:sinix_remote/state/index.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:get/get.dart';
 
 class EnterPage extends StatefulWidget {
   @override
@@ -54,16 +56,17 @@ class _EnterPageState extends State<EnterPage> {
                 ),
                 RaisedButton(
                   onPressed: () async {
-                    print(ipController.text);
                     final http.Response response = await http.post(
-                      "http://${ipController.text}:41431/command",
-                      headers: <String, String>{
-                        'Content-Type': 'application/json; charset=UTF-8',
-                      },
+                      "http://${ipController.text}:41431/connect",
                       body: jsonEncode(<String, String>{
                         "data": '{ "payload": { "type": "turn", "value": "left" }, "type": "data" }'
                       }),
                     );
+
+                    if(response.statusCode == 200){
+                      playerInstance.init(response.body, ipController.text);
+                      Get.offNamed("/home");
+                    }
                   },
                   child: Text("Connect!"),
                 )
