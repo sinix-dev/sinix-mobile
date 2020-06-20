@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class EnterPage extends StatefulWidget {
   @override
@@ -51,8 +53,17 @@ class _EnterPageState extends State<EnterPage> {
                   height: 10,
                 ),
                 RaisedButton(
-                  onPressed: (){
+                  onPressed: () async {
                     print(ipController.text);
+                    final http.Response response = await http.post(
+                      "http://${ipController.text}:41431/command",
+                      headers: <String, String>{
+                        'Content-Type': 'application/json; charset=UTF-8',
+                      },
+                      body: jsonEncode(<String, String>{
+                        "data": '{ "payload": { "type": "turn", "value": "left" }, "type": "data" }'
+                      }),
+                    );
                   },
                   child: Text("Connect!"),
                 )
