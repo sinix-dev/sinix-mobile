@@ -27,11 +27,11 @@ void main() async {
 
           // joypad overlay
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Row(
                 children: [
-                  SizedBox(width: 48),
+                  SizedBox(width: 60),
                   Joypad(
                     onChange: (Offset delta) => print(delta),
                   ),
@@ -42,7 +42,7 @@ void main() async {
                   SizedBox(width: 48),
                 ],
               ),
-              SizedBox(height: 24),
+              SizedBox(height: 48),
             ],
           ),
         ],

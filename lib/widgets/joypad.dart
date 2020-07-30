@@ -27,15 +27,15 @@ class JoypadState extends State<Joypad> {
     updateDelta(
       Offset.fromDirection(
         newDelta.direction,
-        min(40, newDelta.distance),
+        min(60, newDelta.distance),
       ),
     );
   }
 
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150,
-      width: 150,
+      height: 180,
+      width: 180,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(90),
@@ -44,7 +44,7 @@ class JoypadState extends State<Joypad> {
           child: Container(
             decoration: BoxDecoration(
               color: Color(0x88ffffff),
-              borderRadius: BorderRadius.circular(75),
+              borderRadius: BorderRadius.circular(90),
             ),
             child: Center(
               child: Transform.translate(
