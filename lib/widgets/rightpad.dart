@@ -22,14 +22,26 @@ class RightpadState extends State<Rightpad> {
           children: <Widget>[
             Column(
               children: <Widget>[
-                Button(name: "Y"),
-                Button(name: "X"),
+                Button(
+                  name: "Y",
+                  onTap: (String val) => print(val),
+                ),
+                Button(
+                  name: "X",
+                  onTap: (String val) => print(val),
+                ),
               ]
             ),
             Column(
               children: <Widget>[
-                Button(name: "B"),
-                Button(name: "A"),
+                Button(
+                  name: "B",
+                  onTap: (String val) => print(val),
+                ),
+                Button(
+                  name: "A",
+                  onTap: (String val) => print(val),
+                ),
               ]
             ),
           ]
@@ -39,37 +51,48 @@ class RightpadState extends State<Rightpad> {
   }
 }
 
-class Button extends StatelessWidget {
+class Button extends StatefulWidget {
+  final void Function(String) onTap;
   final String name;
 
   Button({
     this.name,
+    @required this.onTap,
   });
 
+  ButtonState createState() => ButtonState();
+}
+
+class ButtonState extends State<Button> {
   Widget build(BuildContext context){
     return Padding(
       padding: EdgeInsets.all(10.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Color(0x88ffffff),
-          borderRadius: BorderRadius.circular(90),
-        ),
-        child: SizedBox(
-          height: 70,
-          width: 70,
-          child: Center(
-            child: Transform.rotate(
-              angle: - pi / 4,
-              child: Text(
-                name,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
+      child: GestureDetector(
+        child: Container(
+          decoration: BoxDecoration(
+            color: Color(0x88ffffff),
+            borderRadius: BorderRadius.circular(90),
+          ),
+          child: SizedBox(
+            height: 70,
+            width: 70,
+            child: Center(
+              child: Transform.rotate(
+                angle: - pi / 4,
+                child: Text(
+                  widget.name,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                  )
                 )
               )
             )
           )
-        )
+        ),
+        onTap: (){
+          widget.onTap(widget.name);
+        }
       )
     );
   }
