@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sinix_remote/widgets/joypad.dart';
@@ -36,8 +37,11 @@ void main() async {
                     onChange: (Offset delta) => print(delta),
                   ),
                   Spacer(),
-                  Rightpad(
-                    onChange: (Offset delta) => print(delta),
+                  Transform.rotate(
+                    angle: math.pi / 4,
+                    child: Rightpad(
+                      onChange: (Offset delta) => print(delta),
+                    ),
                   ),
                   SizedBox(width: 48),
                 ],

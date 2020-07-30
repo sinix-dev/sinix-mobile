@@ -18,7 +18,58 @@ class RightpadState extends State<Rightpad> {
       height: 200,
       width: 200,
       child: Container(
-        color: Colors.black
+        child: Row(
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                Button(name: "Y"),
+                Button(name: "X"),
+              ]
+            ),
+            Column(
+              children: <Widget>[
+                Button(name: "B"),
+                Button(name: "A"),
+              ]
+            ),
+          ]
+        )
+      )
+    );
+  }
+}
+
+class Button extends StatelessWidget {
+  final String name;
+
+  Button({
+    this.name,
+  });
+
+  Widget build(BuildContext context){
+    return Padding(
+      padding: EdgeInsets.all(10.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Color(0x88ffffff),
+          borderRadius: BorderRadius.circular(90),
+        ),
+        child: SizedBox(
+          height: 70,
+          width: 70,
+          child: Center(
+            child: Transform.rotate(
+              angle: - pi / 4,
+              child: Text(
+                name,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                )
+              )
+            )
+          )
+        )
       )
     );
   }

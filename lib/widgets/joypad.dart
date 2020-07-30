@@ -50,12 +50,12 @@ class JoypadState extends State<Joypad> {
               child: Transform.translate(
                 offset: delta,
                 child: SizedBox(
-                  height: 60,
-                  width: 60,
+                  height: 70,
+                  width: 70,
                   child: Container(
                     decoration: BoxDecoration(
                       color: Color(0xccffffff),
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(35),
                     ),
                   ),
                 ),
