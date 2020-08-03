@@ -23,7 +23,7 @@ class JoypadState extends State<Joypad> {
   }
 
   void calculateDelta(Offset offset) {
-    Offset newDelta = offset - Offset(60, 60);
+    Offset newDelta = offset - Offset(90, 90);
     updateDelta(
       Offset.fromDirection(
         newDelta.direction,

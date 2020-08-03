@@ -1,6 +1,8 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:web_socket_channel/io.dart';
+import 'package:sinix_remote/pages/home.dart';
 import 'package:sinix_remote/widgets/joypad.dart';
 import 'package:sinix_remote/widgets/rightpad.dart';
 
@@ -16,41 +18,7 @@ void main() async {
   // disable all UI overlays (show fullscreen)
   await SystemChrome.setEnabledSystemUIOverlays([]);
 
-  runApp(
-    Directionality(
-      textDirection: TextDirection.ltr,
-      child: Stack(
-        children: [
-          // placeholder for game
-          Container(
-            color: Color(0xff27ae60),
-          ),
+  final channel = IOWebSocketChannel.connect('ws://192.168.43.226:41430/sanket143');
 
-          // joypad overlay
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Row(
-                children: [
-                  SizedBox(width: 60),
-                  Joypad(
-                    onChange: (Offset delta) => print(delta),
-                  ),
-                  Spacer(),
-                  Transform.rotate(
-                    angle: math.pi / 4,
-                    child: Rightpad(
-                      onChange: (Offset delta) => print(delta),
-                    ),
-                  ),
-                  SizedBox(width: 48),
-                ],
-              ),
-              SizedBox(height: 48),
-            ],
-          ),
-        ],
-      ),
-    ),
-  );
+  runApp(HomePage());
 }

@@ -21,7 +21,9 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  get: ^3.4.2
   flame: ^0.24.0
+  web_socket_channel: ^1.1.0
   flutter:
     sdk: flutter
 
