@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:sinix_remote/pages/game.dart';
+
 
 class HomePage extends StatelessWidget {
   Widget build(BuildContext context){
     return Directionality(
       textDirection: TextDirection.ltr,
-      child: MaterialApp(
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
           body: Container(
             child: Center(
@@ -37,7 +42,7 @@ class HomePage extends StatelessWidget {
                   RaisedButton(
                     child: Text("Get In"),
                     onPressed: (){
-
+                      Get.to(GamePage());
                     }
                   )
                 ]

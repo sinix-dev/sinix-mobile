@@ -84,6 +84,7 @@ class ButtonState extends State<Button> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
+                    color: Colors.white
                   )
                 )
               )
