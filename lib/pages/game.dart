@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import 'package:sinix_remote/store.dart';
 
 class GamePage extends StatelessWidget {
   IOWebSocketChannel channel = Store.to.channel;
+  User user = Store.to.user;
 
   Widget build(BuildContext context){
     return Scaffold(
@@ -23,7 +25,7 @@ class GamePage extends StatelessWidget {
               children: [
                 // placeholder for game
                 Container(
-                  color: HSLColor.fromAHSL(1.0, 191, 1.0, 0.25).toColor(),
+                  color: HSLColor.fromAHSL(1.0, user.hue * 1.0, 1.0, 0.25).toColor(),
                 ),
 
                 // joypad overlay
@@ -35,8 +37,12 @@ class GamePage extends StatelessWidget {
                         SizedBox(width: 60),
                         Joypad(
                           onChange: (Offset delta){
-                            print(delta);
-                            this.channel.sink.add("${delta}");
+                            var payload = {
+                              "x": delta.dx,
+                              "y": delta.dy,
+                            };
+
+                            this.channel.sink.add(jsonEncode(payload));
                           }
                         ),
                         Spacer(),
