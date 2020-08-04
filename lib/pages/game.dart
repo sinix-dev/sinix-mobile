@@ -7,9 +7,10 @@ import 'package:web_socket_channel/status.dart' as status;
 
 import 'package:sinix_remote/widgets/joypad.dart';
 import 'package:sinix_remote/widgets/rightpad.dart';
+import 'package:sinix_remote/store.dart';
 
 class GamePage extends StatelessWidget {
-  var channel = IOWebSocketChannel.connect("ws://192.168.43.226:41431/ws/sanket143");
+  IOWebSocketChannel channel = Store.to.channel;
 
   Widget build(BuildContext context){
     return Scaffold(
@@ -35,6 +36,7 @@ class GamePage extends StatelessWidget {
                         Joypad(
                           onChange: (Offset delta){
                             print(delta);
+                            this.channel.sink.add("${delta}");
                           }
                         ),
                         Spacer(),
