@@ -37,12 +37,15 @@ class GamePage extends StatelessWidget {
                         SizedBox(width: 60),
                         Joypad(
                           onChange: (Offset delta){
-                            var payload = {
-                              "x": delta.dx,
-                              "y": delta.dy,
+                            var resp = {
+                              "event_type": "STICK1",
+                              "payload": {
+                                "x": delta.dx,
+                                "y": delta.dy,
+                              }
                             };
 
-                            this.channel.sink.add(jsonEncode(payload));
+                            this.channel.sink.add(jsonEncode(resp));
                           }
                         ),
                         Spacer(),
@@ -51,7 +54,16 @@ class GamePage extends StatelessWidget {
                         Transform.rotate(
                           angle: math.pi / 4,
                           child: Rightpad(
-                            onChange: (Offset delta) => print(delta),
+                            onChange: (String val){
+                              var resp = {
+                                "event_type": "BUTTON",
+                                "payload": {
+                                  "val": val
+                                }
+                              };
+
+                              this.channel.sink.add(jsonEncode(resp));
+                            }
                           ),
                         ),
                         SizedBox(width: 48),

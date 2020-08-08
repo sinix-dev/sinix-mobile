@@ -2,7 +2,7 @@ import 'dart:math';
 import "package:flutter/material.dart";
 
 class Rightpad extends StatefulWidget {
-  final void Function(Offset) onChange;
+  final void Function(String) onChange;
 
   const Rightpad({
     Key key,
@@ -24,11 +24,15 @@ class RightpadState extends State<Rightpad> {
               children: <Widget>[
                 Button(
                   name: "Y",
-                  onTap: (String val) => print(val),
+                  onTap: (String val){
+                    widget.onChange(val);
+                  },
                 ),
                 Button(
                   name: "X",
-                  onTap: (String val) => print(val),
+                  onTap: (String val){
+                    widget.onChange(val);
+                  },
                 ),
               ]
             ),
@@ -36,11 +40,15 @@ class RightpadState extends State<Rightpad> {
               children: <Widget>[
                 Button(
                   name: "B",
-                  onTap: (String val) => print(val),
+                  onTap: (String val){
+                    widget.onChange(val);
+                  },
                 ),
                 Button(
                   name: "A",
-                  onTap: (String val) => print(val),
+                  onTap: (String val){
+                    widget.onChange(val);
+                  },
                 ),
               ]
             ),
