@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
-import 'package:sinix_remote/widgets/joypad.dart';
-import 'package:sinix_remote/widgets/rightpad.dart';
-import 'package:sinix_remote/store.dart';
+import 'package:sinix_android/widgets/joypad.dart';
+import 'package:sinix_android/widgets/rightpad.dart';
+import 'package:sinix_android/store.dart';
 
 class GamePage extends StatelessWidget {
   IOWebSocketChannel channel = Store.to.channel;
@@ -25,7 +25,7 @@ class GamePage extends StatelessWidget {
               children: [
                 // placeholder for game
                 Container(
-                  color: HSLColor.fromAHSL(1.0, user.hue * 1.0, 1.0, 0.25).toColor(),
+                  color: Color(0xFFDC143C),
                 ),
 
                 // joypad overlay

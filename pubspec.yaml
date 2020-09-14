@@ -1,5 +1,5 @@
-name: sinix_remote
-description: A new Flutter project.
+name: sinix_android
+description: Joy Stick for Sinix
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -21,13 +21,13 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  flutter:
+    sdk: flutter
+
   get: ^3.4.2
   http: ^0.12.2
   flame: ^0.24.0
   web_socket_channel: ^1.1.0
-  flutter:
-    sdk: flutter
-
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

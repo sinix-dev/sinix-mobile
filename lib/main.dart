@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:web_socket_channel/io.dart';
-import 'package:sinix_remote/pages/home.dart';
-import 'package:sinix_remote/store.dart';
+import 'package:sinix_android/pages/home.dart';
+import 'package:sinix_android/store.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
