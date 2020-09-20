@@ -10,6 +10,7 @@ class HomePage extends StatelessWidget {
       textDirection: TextDirection.ltr,
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
+        darkTheme: ThemeData.dark(),
         home: Scaffold(
           body: Container(
             child: Center(
