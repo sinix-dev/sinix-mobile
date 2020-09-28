@@ -9,7 +9,7 @@ class DiscoverDevices extends StatefulWidget {
 }
 
 class _DiscoverDevicesState extends State<DiscoverDevices> {
-  var DeviceList = [];
+  var deviceList = [];
 
   void scan() async {
     final String ip = await Wifi.ip;
@@ -18,14 +18,14 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
 
     final stream = NetworkAnalyzer.discover2(subnet, port);
 
-    DeviceList = [];
+    deviceList = [];
 
     stream.listen((NetworkAddress addr) {
       if (addr.exists) {
         print('Found device: ${addr.ip}');
 
         setState(() {
-          DeviceList.add(addr.ip);
+          deviceList.add(addr.ip);
         });
       }
     });
@@ -62,15 +62,9 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: DeviceList.length,
+                  itemCount: deviceList.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Text(
-                      DeviceList[index],
-                      style: TextStyle(
-                        color: Sinix.textColor,
-                        fontSize: 18,
-                      ),
-                    );
+                    return Device(deviceList[index]);
                   },
                 ),
               ),
@@ -78,6 +72,29 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class Device extends StatelessWidget {
+  final ipAddr;
+
+  Device(this.ipAddr);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      child: Text(
+        ipAddr,
+        style: TextStyle(
+          color: Sinix.textColor,
+          fontSize: 18,
+        ),
+      ),
+      onTap: (){
+        // TODO: register a client on http://${ipAddr}:41431/register
+        print(ipAddr);
+      },
     );
   }
 }
