@@ -6,16 +6,13 @@ import 'package:web_socket_channel/io.dart';
 class User {
   String username;
   bool connected;
-  int hue;
 
   User(){
-    this.hue = 0;
     this.username = "";
     this.connected = false;
   }
 
-  void connect(String _username, int _hue){
-    this.hue = _hue;
+  void connect(String _username){
     this.connected = true;
     this.username = _username;
   }
@@ -33,12 +30,9 @@ class Store extends GetxController {
       "username": "sanket143"
     };
 
-    var response = await http.post(url, body: body);
-    var payload = jsonDecode(response.body);
+    await http.post(url, body: body);
 
-    print(payload["hue"]);
-    this.user.connect("sanket143", payload["hue"]);
-
+    this.user.connect("sanket143");
     this.channel = IOWebSocketChannel.connect("ws://192.168.43.226:41431/ws/sanket143");
   }
 }

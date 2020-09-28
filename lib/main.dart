@@ -2,15 +2,11 @@ import 'dart:math' as math;
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:web_socket_channel/io.dart';
-import 'package:sinix_android/pages/home.dart';
-import 'package:sinix_android/store.dart';
+import 'package:sinix_android/pages/discover.dart';
+import 'package:sinix_android/utils/sinix.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  Get.put(Store());
-  Store.to.createConnection();
 
   // set preferred orientations (landscape only)
   await SystemChrome.setPreferredOrientations([
@@ -21,5 +17,5 @@ void main() async {
   // disable all UI overlays (show fullscreen)
   await SystemChrome.setEnabledSystemUIOverlays([]);
 
-  runApp(HomePage());
+  runApp(DiscoverDevices());
 }
