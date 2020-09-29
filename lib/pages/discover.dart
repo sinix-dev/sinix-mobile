@@ -1,7 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:sinix_android/utils/sinix.dart';
+import 'package:get/get.dart';
 import 'package:wifi/wifi.dart';
+import 'package:flutter/material.dart';
 import 'package:ping_discover_network/ping_discover_network.dart';
+
+import 'package:sinix_android/utils/sinix.dart';
+import 'package:sinix_android/utils/store.dart';
+import 'package:sinix_android/pages/game.dart';
 
 class DiscoverDevices extends StatefulWidget {
   @override
@@ -91,9 +95,10 @@ class Device extends StatelessWidget {
           fontSize: 18,
         ),
       ),
-      onTap: (){
-        // TODO: register a client on http://${ipAddr}:41431/register
-        print(ipAddr);
+      onTap: () async {
+        // TODO: Add a page or prompt asking for Username
+        await Store.to.createConnection(ipAddr, "username");
+        Get.to(GamePage());
       },
     );
   }
