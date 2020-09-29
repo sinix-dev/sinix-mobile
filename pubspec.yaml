@@ -23,11 +23,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  splashscreen: ^1.2.0
 
   get: ^3.4.2
   wifi: ^0.1.5
   http: ^0.12.2
-  flame: ^0.24.0
+  flame: ^0.26.0
   web_socket_channel: ^1.1.0
   flutter_launcher_icons: ^0.8.0
   ping_discover_network: ^0.2.0+1
@@ -56,10 +57,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
