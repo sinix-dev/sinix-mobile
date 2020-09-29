@@ -1,9 +1,8 @@
-import 'dart:math' as math;
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sinix_android/pages/discover.dart';
-import 'package:sinix_android/utils/sinix.dart';
+import 'package:sinix_android/utils/store.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,5 +16,20 @@ void main() async {
   // disable all UI overlays (show fullscreen)
   await SystemChrome.setEnabledSystemUIOverlays([]);
 
-  runApp(DiscoverDevices());
+  Get.put(Store());
+
+  runApp(App());
+}
+
+class App extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      home: MaterialApp(
+        home: Scaffold(
+          body: DiscoverDevices(),
+        ),
+      ),
+    );
+  }
 }
