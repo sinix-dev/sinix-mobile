@@ -1,18 +1,15 @@
 import 'dart:math' as math;
 import 'dart:convert';
-import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/status.dart' as status;
 
 import 'package:sinix_android/widgets/joypad.dart';
 import 'package:sinix_android/widgets/rightpad.dart';
-import 'package:sinix_android/store.dart';
+import 'package:sinix_android/utils/store.dart';
 
 class GamePage extends StatelessWidget {
-  IOWebSocketChannel channel = Store.to.channel;
-  User user = Store.to.user;
+  final IOWebSocketChannel channel = Store.to.channel;
+  final User user = Store.to.user;
 
   Widget build(BuildContext context){
     return Scaffold(

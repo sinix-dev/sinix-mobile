@@ -6,16 +6,13 @@ import 'package:web_socket_channel/io.dart';
 class User {
   String username;
   bool connected;
-  int hue;
 
   User(){
-    this.hue = 0;
     this.username = "";
     this.connected = false;
   }
 
-  void connect(String _username, int _hue){
-    this.hue = _hue;
+  void connect(String _username){
     this.connected = true;
     this.username = _username;
   }
@@ -27,18 +24,15 @@ class Store extends GetxController {
 
   static Store get to => Get.find();
 
-  void createConnection() async {
-    var url = "http://192.168.43.226:41431/register";
+  Future<void> createConnection(String ipAddr, String username) async {
+    var url = "http://$ipAddr:41431/register";
     var body = {
-      "username": "sanket143"
+      "username": username
     };
 
-    var response = await http.post(url, body: body);
-    var payload = jsonDecode(response.body);
+    await http.post(url, body: body);
 
-    print(payload["hue"]);
-    this.user.connect("sanket143", payload["hue"]);
-
-    this.channel = IOWebSocketChannel.connect("ws://192.168.43.226:41431/ws/sanket143");
+    this.user.connect(username);
+    this.channel = IOWebSocketChannel.connect("ws://$ipAddr:41431/ws/$username");
   }
 }
