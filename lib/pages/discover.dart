@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:wifi/wifi.dart';
 import 'package:flutter/material.dart';
 import 'package:ping_discover_network/ping_discover_network.dart';
@@ -13,7 +14,7 @@ class DiscoverDevices extends StatefulWidget {
 }
 
 class _DiscoverDevicesState extends State<DiscoverDevices> {
-  var deviceList = [];
+  List<String> deviceList = [];
 
   void scan() async {
     final String ip = await Wifi.ip;
@@ -97,8 +98,17 @@ class Device extends StatelessWidget {
       ),
       onTap: () async {
         // TODO: Add a page or prompt asking for Username
-        await Store.to.createConnection(ipAddr, "username");
-        Get.to(GamePage());
+        final response = await Store.to.createConnection(ipAddr, "username");
+        if (response.statusCode == 200) {
+          Get.to(GamePage());
+        } else {
+          if (response.statusCode == 408) {
+            Get.snackbar('Connection Timeout', 'Selected server maybe dead!');
+          } else if (response.statusCode == 502) {
+            Get.snackbar('Connection Error',
+                'Couldn\'t found server with address: $ipAddr');
+          }
+        }
       },
     );
   }
