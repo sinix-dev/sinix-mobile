@@ -253,7 +253,14 @@ packages:
       name: petitparser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.4.0"
+    version: "3.0.4"
+  ping_discover_network:
+    dependency: "direct main"
+    description:
+      name: ping_discover_network
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0+1"
   platform:
     dependency: transitive
     description:
@@ -364,6 +371,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  wifi:
+    dependency: "direct main"
+    description:
+      name: wifi
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.5"
   xdg_directories:
     dependency: transitive
     description:
