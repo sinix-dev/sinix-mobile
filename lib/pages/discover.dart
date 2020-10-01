@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:wifi/wifi.dart';
 import 'package:flutter/material.dart';
 import 'package:ping_discover_network/ping_discover_network.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'package:sinix_android/utils/sinix.dart';
 import 'package:sinix_android/utils/store.dart';
@@ -33,6 +34,7 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
         });
       }
     });
+    _refreshController.refreshCompleted();
   }
 
   @override
@@ -41,6 +43,8 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
 
     this.scan();
   }
+
+  RefreshController _refreshController = RefreshController(initialRefresh: false);
 
   @override
   Widget build(BuildContext context) {
@@ -65,11 +69,18 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
                 height: 20,
               ),
               Expanded(
-                child: ListView.builder(
-                  itemCount: deviceList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Device(deviceList[index]);
-                  },
+                child: SmartRefresher(
+                  enablePullDown: true,
+                  enablePullUp: true,
+                  header: MaterialClassicHeader(),
+                  controller: _refreshController,
+                  onRefresh: scan,
+                  child: ListView.builder(
+                    itemCount: deviceList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Device(deviceList[index]);
+                    },
+                  ),
                 ),
               ),
             ],
