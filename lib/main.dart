@@ -26,6 +26,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       home: MaterialApp(
+        theme: ThemeData(fontFamily: 'Roboto'),
         home: Scaffold(
           body: DiscoverDevices(),
         ),
