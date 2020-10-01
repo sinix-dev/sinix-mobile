@@ -7,12 +7,12 @@ class User {
   String username;
   bool connected;
 
-  User(){
+  User() {
     this.username = "";
     this.connected = false;
   }
 
-  void connect(String _username){
+  void connect(String _username) {
     this.connected = true;
     this.username = _username;
   }
@@ -24,15 +24,14 @@ class Store extends GetxController {
 
   static Store get to => Get.find();
 
-  Future<void> createConnection(String ipAddr, String username) async {
+  Future<void> createConnection(String ipAddr) async {
     var url = "http://$ipAddr:41431/register";
-    var body = {
-      "username": username
-    };
-
+    var body = {"username": user.username};
+   
     await http.post(url, body: body);
 
-    this.user.connect(username);
-    this.channel = IOWebSocketChannel.connect("ws://$ipAddr:41431/ws/$username");
+    this.user.connect(user.username);
+    this.channel =
+        IOWebSocketChannel.connect("ws://$ipAddr:41431/ws/${user.username}");
   }
 }

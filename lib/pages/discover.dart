@@ -44,35 +44,37 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(35.0),
-        child: Directionality(
-          textDirection: TextDirection.ltr,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                "Available Devices",
-                style: TextStyle(
-                  color: Sinix.textColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
+    return Material(
+      child: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(35.0),
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "Available Devices",
+                  style: TextStyle(
+                    color: Sinix.textColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: deviceList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Device(deviceList[index]);
-                  },
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-            ],
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: deviceList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Device(deviceList[index]);
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -97,7 +99,7 @@ class Device extends StatelessWidget {
       ),
       onTap: () async {
         // TODO: Add a page or prompt asking for Username
-        await Store.to.createConnection(ipAddr, "username");
+        await Store.to.createConnection(ipAddr);
         Get.to(GamePage());
       },
     );
