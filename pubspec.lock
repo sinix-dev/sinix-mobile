@@ -253,7 +253,7 @@ packages:
       name: petitparser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.4.0"
+    version: "3.0.4"
   ping_discover_network:
     dependency: "direct main"
     description:
