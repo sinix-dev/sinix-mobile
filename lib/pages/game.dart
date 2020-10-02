@@ -39,6 +39,7 @@ class GamePage extends StatelessWidget {
                               "payload": {
                                 "x": delta.dx,
                                 "y": delta.dy,
+                                "username": user.username,
                               }
                             };
 
