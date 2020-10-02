@@ -33,18 +33,15 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
           deviceList.add(addr.ip);
         });
       }
-    });
-    _refreshController.refreshCompleted();
+    }).onDone(_refreshController.refreshCompleted);
   }
 
   @override
   void initState() {
     super.initState();
-
-    this.scan();
   }
 
-  RefreshController _refreshController = RefreshController(initialRefresh: false);
+  RefreshController _refreshController = RefreshController(initialRefresh: true);
 
   @override
   Widget build(BuildContext context) {
