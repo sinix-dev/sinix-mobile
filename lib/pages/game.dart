@@ -22,7 +22,7 @@ class GamePage extends StatelessWidget {
               children: [
                 // placeholder for game
                 Container(
-                  color: Color(0xFFDC143C),
+                  color: Color(0xFFFFFFFF),
                 ),
 
                 // joypad overlay

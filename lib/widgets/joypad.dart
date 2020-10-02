@@ -43,7 +43,7 @@ class JoypadState extends State<Joypad> {
         child: GestureDetector(
           child: Container(
             decoration: BoxDecoration(
-              color: Color(0x88ffffff),
+              color: Color(0xFFDC143C).withOpacity(0.35),
               borderRadius: BorderRadius.circular(90),
             ),
             child: Center(
@@ -54,7 +54,7 @@ class JoypadState extends State<Joypad> {
                   width: 70,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Color(0xccffffff),
+                      color: Color(0xFFDC143C),
                       borderRadius: BorderRadius.circular(35),
                     ),
                   ),
