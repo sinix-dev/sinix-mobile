@@ -39,6 +39,7 @@ class GamePage extends StatelessWidget {
                               "payload": {
                                 "x": delta.dx,
                                 "y": delta.dy,
+                                "username": user.username,
                               }
                             };
 
@@ -55,7 +56,8 @@ class GamePage extends StatelessWidget {
                               var resp = {
                                 "event_type": "BUTTON",
                                 "payload": {
-                                  "val": val
+                                  "val": val,
+                                  "username": user.username,
                                 }
                               };
 
