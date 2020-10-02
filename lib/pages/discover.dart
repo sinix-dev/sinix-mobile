@@ -37,11 +37,6 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
     }).onDone(_refreshController.refreshCompleted);
   }
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
   RefreshController _refreshController = RefreshController(initialRefresh: true);
 
   @override
