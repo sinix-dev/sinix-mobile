@@ -43,7 +43,7 @@ class Store extends GetxController {
       isConnectionError = false;
       this.user.connect(user.username);
       this.channel =
-          IOWebSocketChannel.connect("ws://$ipAddr:41431/ws/$user.username");
+          IOWebSocketChannel.connect("ws://$ipAddr:41431/ws/${user.username}");
     } else {
       isConnectionError = true;
     }

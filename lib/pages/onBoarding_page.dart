@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:sinix_android/pages/discover.dart';
 import 'package:sinix_android/utils/store.dart';
 
-class OnBordingPage extends StatefulWidget {
+class OnBoardingPage extends StatefulWidget {
   @override
-  _OnBordingPageState createState() => _OnBordingPageState();
+  _OnBoardingPageState createState() => _OnBoardingPageState();
 }
 
-class _OnBordingPageState extends State<OnBordingPage> {
+class _OnBoardingPageState extends State<OnBoardingPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
