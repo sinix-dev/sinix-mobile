@@ -37,37 +37,48 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
     }).onDone(_refreshController.refreshCompleted);
   }
 
-  RefreshController _refreshController = RefreshController(initialRefresh: true);
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: true);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(35.0),
-        child: Directionality(
-          textDirection: TextDirection.ltr,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                "Available Devices",
-                style: TextStyle(
-                  color: Sinix.textColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
+    return Material(
+      child: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(35.0),
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "Available Devices",
+                  style: TextStyle(
+                    color: Sinix.textColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Expanded(
-                child: SmartRefresher(
-                  enablePullDown: true,
-                  enablePullUp: true,
-                  header: MaterialClassicHeader(),
-                  controller: _refreshController,
-                  onRefresh: scan,
+                SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child: SmartRefresher(
+                    enablePullDown: true,
+                    enablePullUp: true,
+                    header: MaterialClassicHeader(),
+                    controller: _refreshController,
+                    onRefresh: scan,
+                    child: ListView.builder(
+                      itemCount: deviceList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Device(deviceList[index]);
+                      },
+                    ),
+                  ),
+                ),
+                Expanded(
                   child: ListView.builder(
                     itemCount: deviceList.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -75,8 +86,8 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
                     },
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -101,7 +112,7 @@ class Device extends StatelessWidget {
       ),
       onTap: () async {
         // TODO: Add a page or prompt asking for Username
-        final response = await Store.to.createConnection(ipAddr, "username");
+        final response = await Store.to.createConnection(ipAddr);
         if (response.statusCode == 200) {
           Get.to(GamePage());
         } else {

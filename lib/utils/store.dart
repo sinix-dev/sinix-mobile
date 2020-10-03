@@ -25,9 +25,9 @@ class Store extends GetxController {
 
   static Store get to => Get.find();
 
-  Future<http.Response> createConnection(String ipAddr, String username) async {
+  Future<http.Response> createConnection(String ipAddr,) async {
     var url = "http://$ipAddr:41431/register";
-    var body = {"username": username};
+    var body = {"username": user.username};
 
     final response = await http
         .post(url, body: body)
@@ -41,9 +41,9 @@ class Store extends GetxController {
 
     if (response.statusCode == 200) {
       isConnectionError = false;
-      this.user.connect(username);
+      this.user.connect(user.username);
       this.channel =
-          IOWebSocketChannel.connect("ws://$ipAddr:41431/ws/$username");
+          IOWebSocketChannel.connect("ws://$ipAddr:41431/ws/${user.username}");
     } else {
       isConnectionError = true;
     }
