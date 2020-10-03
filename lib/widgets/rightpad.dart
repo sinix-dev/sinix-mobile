@@ -78,7 +78,7 @@ class ButtonState extends State<Button> {
       child: GestureDetector(
         child: Container(
           decoration: BoxDecoration(
-            color: Color(0x88ffffff),
+            color: Color(0xFFDC143C),
             borderRadius: BorderRadius.circular(90),
           ),
           child: SizedBox(
