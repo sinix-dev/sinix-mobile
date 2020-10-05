@@ -24,7 +24,7 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
 
     final stream = NetworkAnalyzer.discover2(subnet, port);
 
-    deviceList = ['192.168.1.1'];
+    deviceList = [];
 
     stream.listen((NetworkAddress addr) {
       if (addr.exists) {
