@@ -25,7 +25,7 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
 
     final stream = NetworkAnalyzer.discover2(subnet, port);
 
-    deviceList = [];
+    deviceList = ['192.168.1.1'];
 
     stream.listen((NetworkAddress addr) {
       if (addr.exists) {
@@ -99,6 +99,7 @@ class Device extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Icon(FeatherIcons.cast),
+          SizedBox(width: 10.0,),
           Text(
           ipAddr,
           style: TextStyle(
