@@ -33,8 +33,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 SizedBox(
                   width: 300,
                   child: TextField(
-                    onSubmitted: (value) {
-                      Store.to.user.username = value;
+                    onSubmitted: (userName) {
+                      Store.to.saveUserName(userName);
                       Get.to(DiscoverDevices());
                     },
                     decoration: InputDecoration(
