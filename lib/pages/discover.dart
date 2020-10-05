@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 import 'package:wifi/wifi.dart';
 import 'package:flutter/material.dart';
 import 'package:ping_discover_network/ping_discover_network.dart';
@@ -110,7 +109,6 @@ class Device extends StatelessWidget {
         ],
       ),
       onTap: () async {
-        // TODO: Add a page or prompt asking for Username
         final response = await Store.to.createConnection(ipAddr);
         if (response.statusCode == 200) {
           Get.to(GamePage());

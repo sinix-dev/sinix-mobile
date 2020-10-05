@@ -1,6 +1,6 @@
-import 'dart:convert';
 import 'package:http/http.dart' as http;
 import "package:get/get.dart";
+import 'package:sinix_android/services/Storage_service.dart';
 import 'package:web_socket_channel/io.dart';
 
 class User {
@@ -21,11 +21,27 @@ class User {
 class Store extends GetxController {
   IOWebSocketChannel channel;
   User user = User();
+
+  LocalStorage localStorage = LocalStorage();
+
   bool isConnectionError = false;
 
   static Store get to => Get.find();
 
-  Future<http.Response> createConnection(String ipAddr,) async {
+  Future<void> init() async {
+    await localStorage.init();
+    localStorage.prefs.setBool('firstOpen', false);
+    user.username = localStorage.userName;
+  }
+
+  Future<void> saveUserName(String userName) async {
+    user.username = userName;
+    await localStorage.prefs.setString('userName', userName);
+  }
+
+  Future<http.Response> createConnection(
+    String ipAddr,
+  ) async {
     var url = "http://$ipAddr:41431/register";
     var body = {"username": user.username};
 
