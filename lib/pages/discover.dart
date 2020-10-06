@@ -3,6 +3,7 @@ import 'package:wifi/wifi.dart';
 import 'package:flutter/material.dart';
 import 'package:ping_discover_network/ping_discover_network.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 
 import 'package:sinix_android/utils/sinix.dart';
 import 'package:sinix_android/utils/store.dart';
@@ -77,14 +78,6 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
                     ),
                   ),
                 ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: deviceList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Device(deviceList[index]);
-                    },
-                  ),
-                ),
               ],
             ),
           ),
@@ -102,12 +95,18 @@ class Device extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: Text(
-        ipAddr,
-        style: TextStyle(
-          color: Sinix.textColor,
-          fontSize: 18,
-        ),
+      child: Row(
+        children: <Widget>[
+          Icon(FeatherIcons.cast),
+          SizedBox(width: 10.0,),
+          Text(
+          ipAddr,
+          style: TextStyle(
+            color: Sinix.textColor,
+            fontSize: 18,
+            ),
+          ),
+        ],
       ),
       onTap: () async {
         final response = await Store.to.createConnection(ipAddr);
