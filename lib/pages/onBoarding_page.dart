@@ -9,6 +9,14 @@ class OnBoardingPage extends StatefulWidget {
 }
 
 class _OnBoardingPageState extends State<OnBoardingPage> {
+  final controller = TextEditingController();
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -31,10 +39,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   width: 300,
                   child: TextField(
                     textAlign: TextAlign.center,
-                    onSubmitted: (userName) {
-                      Store.to.saveUserName(userName);
-                      Get.to(DiscoverDevices());
-                    },
+                    controller: controller,
                     decoration: InputDecoration(
                       hintText: "USERNAME",
                       border: OutlineInputBorder(
@@ -48,7 +53,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 ),
                 FlatButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/discoverDevices');
+                    Store.to.saveUserName(controller.text);
+                    Get.to(DiscoverDevices());
                   },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0)

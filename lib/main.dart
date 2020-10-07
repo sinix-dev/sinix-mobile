@@ -29,9 +29,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       home: MaterialApp(
-        routes: {
-          '/discoverDevices': (context) => DiscoverDevices()
-        },
         theme: ThemeData(fontFamily: 'Roboto'),
         home: Scaffold(
           body: OnBoardingPage(),
