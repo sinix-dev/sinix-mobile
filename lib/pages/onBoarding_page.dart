@@ -54,6 +54,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 FlatButton(
                   onPressed: () {
                     Store.to.saveUserName(controller.text);
+                    print('${controller.text}');
                     Get.to(DiscoverDevices());
                   },
                   shape: RoundedRectangleBorder(
