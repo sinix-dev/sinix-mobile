@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sinix_android/pages/discover.dart';
 import 'package:sinix_android/pages/onBoarding_page.dart';
 import 'package:sinix_android/utils/store.dart';
 
@@ -28,6 +29,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       home: MaterialApp(
+        routes: {
+          '/discoverDevices': (context) => DiscoverDevices()
+        },
         theme: ThemeData(fontFamily: 'Roboto'),
         home: Scaffold(
           body: OnBoardingPage(),

@@ -21,28 +21,43 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 60,
+                  height: 70,
                 ),
-                Icon(
-                  Icons.account_circle,
-                  size: 105,
-                ),
+                Image.asset('assets/icon/logo_light.png'),
                 SizedBox(
-                  height: 60,
+                  height: 50,
                 ),
                 SizedBox(
                   width: 300,
                   child: TextField(
+                    textAlign: TextAlign.center,
                     onSubmitted: (userName) {
                       Store.to.saveUserName(userName);
                       Get.to(DiscoverDevices());
                     },
                     decoration: InputDecoration(
-                      labelText: "Enter Username",
+                      hintText: "USERNAME",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
                     ),
+                  ),
+                ),
+                SizedBox(
+                  height: 25.0,
+                ),
+                FlatButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/discoverDevices');
+                  },
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0)
+                  ),
+                  color: Colors.red[600],
+                  textColor: Colors.white,
+                  padding: EdgeInsets.fromLTRB(30.0, 15.0, 30.0, 15.0),
+                  child: Text(
+                    'ENTER',
                   ),
                 ),
               ],
