@@ -27,6 +27,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           width: double.infinity,
           child: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
                   height: 70,
@@ -36,14 +37,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   height: 50,
                 ),
                 SizedBox(
-                  width: 300,
+                  width: 364,
                   child: TextField(
                     textAlign: TextAlign.center,
                     controller: controller,
                     decoration: InputDecoration(
                       hintText: "USERNAME",
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(3.0),
                       ),
                     ),
                   ),
@@ -58,9 +59,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     Get.to(DiscoverDevices());
                   },
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0)
+                    borderRadius: BorderRadius.circular(10.0)
                   ),
-                  color: Colors.red[600],
+                  color: Color(0xFFDC143C),
                   textColor: Colors.white,
                   padding: EdgeInsets.fromLTRB(30.0, 15.0, 30.0, 15.0),
                   child: Text(
