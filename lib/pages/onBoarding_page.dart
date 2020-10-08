@@ -9,6 +9,14 @@ class OnBoardingPage extends StatefulWidget {
 }
 
 class _OnBoardingPageState extends State<OnBoardingPage> {
+  final controller = TextEditingController();
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -19,30 +27,45 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           width: double.infinity,
           child: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 60,
+                  height: 70,
                 ),
-                Icon(
-                  Icons.account_circle,
-                  size: 105,
+                Image.asset('assets/icon/logo_light.png'),
+                SizedBox(
+                  height: 50,
                 ),
                 SizedBox(
-                  height: 60,
-                ),
-                SizedBox(
-                  width: 300,
+                  width: 364,
                   child: TextField(
-                    onSubmitted: (userName) {
-                      Store.to.saveUserName(userName);
-                      Get.to(DiscoverDevices());
-                    },
+                    textAlign: TextAlign.center,
+                    controller: controller,
                     decoration: InputDecoration(
-                      labelText: "Enter Username",
+                      hintText: "USERNAME",
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(3.0),
                       ),
                     ),
+                  ),
+                ),
+                SizedBox(
+                  height: 25.0,
+                ),
+                FlatButton(
+                  onPressed: () {
+                    Store.to.saveUserName(controller.text);
+                    print('${controller.text}');
+                    Get.to(DiscoverDevices());
+                  },
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)
+                  ),
+                  color: Color(0xFFDC143C),
+                  textColor: Colors.white,
+                  padding: EdgeInsets.fromLTRB(30.0, 15.0, 30.0, 15.0),
+                  child: Text(
+                    'ENTER',
                   ),
                 ),
               ],
