@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sinix_android/pages/discover.dart';
-import 'package:sinix_android/pages/onBoarding_page.dart';
+import 'package:sinix_android/pages/onboarding.dart';
 import 'package:sinix_android/utils/store.dart';
 
 void main() async {

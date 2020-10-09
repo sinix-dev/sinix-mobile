@@ -27,12 +27,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           width: double.infinity,
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
                   height: 70,
                 ),
-                Image.asset('assets/icon/logo_light.png'),
+                Image.asset(
+                  'assets/icon/logo_light.png',
+                  height: 64,
+                ),
                 SizedBox(
                   height: 50,
                 ),
