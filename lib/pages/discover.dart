@@ -16,6 +16,7 @@ class DiscoverDevices extends StatefulWidget {
 
 class _DiscoverDevicesState extends State<DiscoverDevices> {
   List<String> deviceList = [];
+  bool _isListEmpty = false;
 
   void scan() async {
     final String ip = await Wifi.ip;
@@ -34,7 +35,14 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
           deviceList.add(addr.ip);
         });
       }
-    }).onDone(_refreshController.refreshCompleted);
+    }, onDone: () {
+      _refreshController.refreshCompleted();
+      if(deviceList.isEmpty) {
+        setState(() {
+          _isListEmpty = true;
+        });
+      }
+    });
   }
 
   RefreshController _refreshController =
@@ -70,7 +78,10 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
                     header: MaterialClassicHeader(),
                     controller: _refreshController,
                     onRefresh: scan,
-                    child: ListView.builder(
+                    child: _isListEmpty ?
+                    Text('No Sinix servers found',
+                    style: TextStyle(fontSize: 17),) :
+                    ListView.builder(
                       itemCount: deviceList.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Device(deviceList[index]);
