@@ -1,8 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sinix_android/pages/discover.dart';
-import 'package:sinix_android/pages/onboarding.dart';
+import 'package:sinix_android/pages/game.dart';
 import 'package:sinix_android/utils/store.dart';
 
 void main() async {
@@ -31,7 +30,7 @@ class App extends StatelessWidget {
       home: MaterialApp(
         theme: ThemeData(fontFamily: 'Roboto'),
         home: Scaffold(
-          body: OnBoardingPage(),
+          body: GamePage(),
         ),
       ),
     );

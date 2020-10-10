@@ -13,48 +13,43 @@ class Rightpad extends StatefulWidget {
 }
 
 class RightpadState extends State<Rightpad> {
-  Widget build(BuildContext context){
-    return SizedBox(
-      height: 200,
-      width: 200,
-      child: Container(
-        child: Row(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Button(
-                  name: "Y",
-                  onTap: (String val){
-                    widget.onChange(val);
-                  },
-                ),
-                Button(
-                  name: "X",
-                  onTap: (String val){
-                    widget.onChange(val);
-                  },
-                ),
-              ]
-            ),
-            Column(
-              children: <Widget>[
-                Button(
-                  name: "B",
-                  onTap: (String val){
-                    widget.onChange(val);
-                  },
-                ),
-                Button(
-                  name: "A",
-                  onTap: (String val){
-                    widget.onChange(val);
-                  },
-                ),
-              ]
-            ),
-          ]
-        )
-      )
+  Widget build(BuildContext context) {
+    return Transform.rotate(
+      angle: pi / 4,
+      child: SizedBox(
+          height: 200,
+          width: 200,
+          child: Container(
+              child: Row(children: <Widget>[
+            Column(children: <Widget>[
+              Button(
+                name: "Y",
+                onTap: (String val) {
+                  widget.onChange(val);
+                },
+              ),
+              Button(
+                name: "X",
+                onTap: (String val) {
+                  widget.onChange(val);
+                },
+              ),
+            ]),
+            Column(children: <Widget>[
+              Button(
+                name: "B",
+                onTap: (String val) {
+                  widget.onChange(val);
+                },
+              ),
+              Button(
+                name: "A",
+                onTap: (String val) {
+                  widget.onChange(val);
+                },
+              ),
+            ]),
+          ]))),
     );
   }
 }
@@ -72,37 +67,31 @@ class Button extends StatefulWidget {
 }
 
 class ButtonState extends State<Button> {
-  Widget build(BuildContext context){
-    return Padding(
-      padding: EdgeInsets.all(10.0),
-      child: GestureDetector(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Color(0xFFDC143C),
-            borderRadius: BorderRadius.circular(90),
-          ),
-          child: SizedBox(
-            height: 70,
-            width: 70,
-            child: Center(
-              child: Transform.rotate(
-                angle: - pi / 4,
-                child: Text(
-                  widget.name,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                    color: Colors.white
-                  )
-                )
-              )
-            )
-          )
-        ),
-        onTap: (){
-          widget.onTap(widget.name);
-        }
-      )
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: GestureDetector(
+              child: Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFFDC143C),
+                    borderRadius: BorderRadius.circular(90),
+                  ),
+                  child: SizedBox(
+                      height: 70,
+                      width: 70,
+                      child: Center(
+                          child: Transform.rotate(
+                              angle: -pi / 4,
+                              child: Text(widget.name,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 25,
+                                      color: Colors.white)))))),
+              onTap: () {
+                widget.onTap(widget.name);
+              })),
     );
   }
 }
