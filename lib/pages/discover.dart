@@ -41,6 +41,10 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
         setState(() {
           _isListEmpty = true;
         });
+      } else {
+        setState(() {
+          _isListEmpty = false;
+        });
       }
     });
   }
