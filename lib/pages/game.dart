@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sinix_android/pages/edit_controller.dart';
@@ -43,7 +45,7 @@ class _GamePageState extends State<GamePage> {
         return Directionality(
           textDirection: TextDirection.ltr,
           child: StreamBuilder(
-              // stream: channel.stream,
+              stream: channel.stream,
               builder: (context, snapshot) {
             return Stack(
               children: [
@@ -66,7 +68,7 @@ class _GamePageState extends State<GamePage> {
                           "username": user.username,
                         }
                       };
-                      // this.channel.sink.add(jsonEncode(resp));
+                      this.channel.sink.add(jsonEncode(resp));
                     }),
                   ),
                 ),
@@ -87,7 +89,7 @@ class _GamePageState extends State<GamePage> {
                           "username": user.username,
                         }
                       };
-                      // this.channel.sink.add(jsonEncode(resp));
+                      this.channel.sink.add(jsonEncode(resp));
                     }),
                   ),
                 ),

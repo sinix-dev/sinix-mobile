@@ -18,6 +18,10 @@ class LocalStorage {
     firstOpen = prefs.getBool('firstOpen') ?? true;
     userName = prefs.getString('userName') ?? "";
 
+    getCoordinates();
+  }
+
+  void getCoordinates() {
     joypadCoordinate =
         prefs.getStringList("joypadCoordinate") ?? defaultCoordinate;
     rightpadCoordinate =
@@ -32,7 +36,7 @@ class LocalStorage {
     this.rightpadCoordinate[0] = rightpadCoordinate.dx.toString();
     this.rightpadCoordinate[1] = rightpadCoordinate.dy.toString();
 
-    prefs.setStringList("joypadCoordinate", this.joypadCoordinate);
+    await prefs.setStringList("joypadCoordinate", this.joypadCoordinate);
     await prefs.setStringList("rightpadCoordinate", this.rightpadCoordinate);
   }
 }
