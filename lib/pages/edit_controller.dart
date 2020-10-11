@@ -30,7 +30,6 @@ class _EditControllerState extends State<EditController> {
   }
 
   void resetOffset() {
-    print("hello");
     joypadOffset = Offset(
       double.parse(localStorage.defaultCoordinate[0]),
       double.parse(localStorage.defaultCoordinate[1]),
