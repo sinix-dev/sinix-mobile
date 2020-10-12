@@ -1,81 +1,115 @@
-import 'dart:math' as math;
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sinix_android/pages/edit_controller.dart';
+import 'package:sinix_android/widgets/switch_panel.dart';
 import 'package:web_socket_channel/io.dart';
 
 import 'package:sinix_android/widgets/joypad.dart';
 import 'package:sinix_android/widgets/rightpad.dart';
 import 'package:sinix_android/utils/store.dart';
 
-class GamePage extends StatelessWidget {
+class GamePage extends StatefulWidget {
+  @override
+  _GamePageState createState() => _GamePageState();
+}
+
+class _GamePageState extends State<GamePage> {
   final IOWebSocketChannel channel = Store.to.channel;
+
   final User user = Store.to.user;
 
-  Widget build(BuildContext context){
-    return Scaffold(
-      body: Directionality(
-        textDirection: TextDirection.ltr,
-        child: StreamBuilder(
-          stream: channel.stream,
-          builder: (context, snapshot) {
+  Offset joypadOffset;
+
+  Offset rightpadOffset;
+
+  final localStorage = Store.to.localStorage;
+
+  void setInitialOffset() {
+    joypadOffset = Offset(
+      double.parse(localStorage.joypadCoordinate[0]),
+      double.parse(localStorage.joypadCoordinate[1]),
+    );
+
+    rightpadOffset = Offset(
+      double.parse(localStorage.rightpadCoordinate[0]),
+      double.parse(localStorage.rightpadCoordinate[1]),
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Scaffold(body: GetBuilder<Store>(
+      builder: (store) {
+        setInitialOffset();
+        return Directionality(
+          textDirection: TextDirection.ltr,
+          child: StreamBuilder(
+              stream: channel.stream,
+              builder: (context, snapshot) {
             return Stack(
               children: [
-                // placeholder for game
                 Container(
                   color: Color(0xFFFFFFFF),
                 ),
 
                 // joypad overlay
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Row(
-                      children: [
-                        SizedBox(width: 60),
-                        Joypad(
-                          onChange: (Offset delta){
-                            var resp = {
-                              "event_type": "STICK1",
-                              "payload": {
-                                "x": delta.dx,
-                                "y": delta.dy,
-                                "username": user.username,
-                              }
-                            };
-
-                            this.channel.sink.add(jsonEncode(resp));
-                          }
-                        ),
-                        Spacer(),
-                        Text(snapshot.hasData ? "${snapshot.data}" : ""),
-                        Spacer(),
-                        Transform.rotate(
-                          angle: math.pi / 4,
-                          child: Rightpad(
-                            onChange: (String val){
-                              var resp = {
-                                "event_type": "BUTTON",
-                                "payload": {
-                                  "val": val,
-                                  "username": user.username,
-                                }
-                              };
-
-                              this.channel.sink.add(jsonEncode(resp));
-                            }
-                          ),
-                        ),
-                        SizedBox(width: 48),
-                      ],
-                    ),
-                    SizedBox(height: 48),
-                  ],
+                Positioned(
+                  bottom: joypadOffset.dy,
+                  left: joypadOffset.dx,
+                  child: Hero(
+                    tag: "joypad",
+                    child: Joypad(onChange: (Offset delta) {
+                      var resp = {
+                        "event_type": "STICK1",
+                        "payload": {
+                          "x": delta.dx,
+                          "y": delta.dy,
+                          "username": user.username,
+                        }
+                      };
+                      this.channel.sink.add(jsonEncode(resp));
+                    }),
+                  ),
                 ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Text(snapshot.hasData ? "${snapshot.data}" : ""),
+                ),
+                Positioned(
+                  bottom: rightpadOffset.dy,
+                  right: rightpadOffset.dx,
+                  child: Hero(
+                    tag: "rightpad",
+                    child: Rightpad(onChange: (String val) {
+                      var resp = {
+                        "event_type": "BUTTON",
+                        "payload": {
+                          "val": val,
+                          "username": user.username,
+                        }
+                      };
+                      this.channel.sink.add(jsonEncode(resp));
+                    }),
+                  ),
+                ),
+                SwitchPanel(
+                  actions: [
+                    SwitchButton(
+                      child: IconButton(
+                        icon: Icon(Icons.edit),
+                        onPressed: () {
+                          Get.to(EditController());
+                        },
+                      ),
+                    )
+                  ],
+                )
               ],
             );
-          }
-        ),
-      ),
-    );
+          }),
+        );
+      },
+    ));
   }
 }
