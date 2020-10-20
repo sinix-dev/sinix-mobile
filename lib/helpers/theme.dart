@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 final ThemeData theme = ThemeData(
   fontFamily: 'Roboto',
-  primarySwatch: createMaterialColor(Color(0xffF33D61)),
+  primarySwatch: createMaterialColor(Color(0xFFDC143C)),
 );
 
 
