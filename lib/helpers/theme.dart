@@ -5,11 +5,7 @@ final ThemeData theme = ThemeData(
   primarySwatch: createMaterialColor(Color(0xFFDC143C)),
 );
 
-
-
-
-
-// creates thhe Material Color from given colors value
+// Creates the Material Color from given color value
 MaterialColor createMaterialColor(Color color) {
   List strengths = <double>[.05];
   Map swatch = <int, Color>{};
