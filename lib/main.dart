@@ -29,8 +29,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: theme,
       home: MaterialApp(
-        theme: theme,
         home: Scaffold(
           body: OnBoardingPage(),
         ),
