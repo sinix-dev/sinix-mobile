@@ -31,7 +31,7 @@ class App extends StatelessWidget {
       home: MaterialApp(
         theme: ThemeData(fontFamily: 'Roboto'),
         home: Scaffold(
-          body: OnBoardingPage(),
+          body: GamePage(),
         ),
       ),
     );

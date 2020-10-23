@@ -9,6 +9,7 @@ import 'package:web_socket_channel/io.dart';
 import 'package:sinix_android/widgets/joypad.dart';
 import 'package:sinix_android/widgets/rightpad.dart';
 import 'package:sinix_android/utils/store.dart';
+import 'package:sinix_android/widgets/pause.dart';
 
 class GamePage extends StatefulWidget {
   @override
@@ -39,15 +40,16 @@ class _GamePageState extends State<GamePage> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(body: GetBuilder<Store>(
-      builder: (store) {
+    return Scaffold(
+      body: GetBuilder<Store>(
+        builder: (store) {
         setInitialOffset();
         return Directionality(
           textDirection: TextDirection.ltr,
-          child: StreamBuilder(
+          child: /*StreamBuilder(
               stream: channel.stream,
-              builder: (context, snapshot) {
-            return Stack(
+              builder: (context, snapshot) {*/
+            Stack(
               children: [
                 Container(
                   color: Color(0xFFFFFFFF),
@@ -59,7 +61,7 @@ class _GamePageState extends State<GamePage> {
                   left: joypadOffset.dx,
                   child: Hero(
                     tag: "joypad",
-                    child: Joypad(onChange: (Offset delta) {
+                    child: Joypad(onChange: (Offset delta) {/*
                       var resp = {
                         "event_type": "STICK1",
                         "payload": {
@@ -68,20 +70,20 @@ class _GamePageState extends State<GamePage> {
                           "username": user.username,
                         }
                       };
-                      this.channel.sink.add(jsonEncode(resp));
+                      this.channel.sink.add(jsonEncode(resp));*/
                     }),
                   ),
                 ),
-                Align(
+                /*Align(
                   alignment: Alignment.bottomCenter,
                   child: Text(snapshot.hasData ? "${snapshot.data}" : ""),
-                ),
+                ),*/
                 Positioned(
                   bottom: rightpadOffset.dy,
                   right: rightpadOffset.dx,
                   child: Hero(
                     tag: "rightpad",
-                    child: Rightpad(onChange: (String val) {
+                    child: Rightpad(onChange: (String val) {/*
                       var resp = {
                         "event_type": "BUTTON",
                         "payload": {
@@ -89,9 +91,13 @@ class _GamePageState extends State<GamePage> {
                           "username": user.username,
                         }
                       };
-                      this.channel.sink.add(jsonEncode(resp));
+                      this.channel.sink.add(jsonEncode(resp));*/
                     }),
                   ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: PauseButton(),
                 ),
                 SwitchPanel(
                   actions: [
@@ -106,8 +112,8 @@ class _GamePageState extends State<GamePage> {
                   ],
                 )
               ],
-            );
-          }),
+            ),
+          //}),
         );
       },
     ));
