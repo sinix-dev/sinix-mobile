@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sinix_android/helpers/theme.dart';
 import 'package:sinix_android/pages/game.dart';
 import 'package:sinix_android/pages/onboarding.dart';
 import 'package:sinix_android/utils/store.dart';
@@ -30,8 +31,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: theme,
       home: MaterialApp(
-        theme: ThemeData(fontFamily: 'Roboto'),
         home: Scaffold(
           body: OnBoardingPage(),
         ),
