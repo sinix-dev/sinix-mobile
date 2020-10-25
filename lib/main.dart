@@ -5,6 +5,8 @@ import 'package:sinix_android/pages/game.dart';
 import 'package:sinix_android/pages/onboarding.dart';
 import 'package:sinix_android/utils/store.dart';
 
+import 'pages/onboarding.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -31,7 +33,7 @@ class App extends StatelessWidget {
       home: MaterialApp(
         theme: ThemeData(fontFamily: 'Roboto'),
         home: Scaffold(
-          body: GamePage(),
+          body: OnBoardingPage(),
         ),
       ),
     );
