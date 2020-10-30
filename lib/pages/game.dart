@@ -63,10 +63,10 @@ class _GamePageState extends State<GamePage> {
               stream: channel.stream,
               builder: (context, snapshot) {
             return Stack(
-                  children: [
-                    Container(
-                      color: Color(0xFFFFFFFF),
-                    ),
+              children: [
+                Container(
+                  color: Color(0xFFFFFFFF),
+                ),
 
                 // joypad overlay
                 Positioned(
