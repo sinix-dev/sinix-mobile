@@ -39,7 +39,22 @@ class _GamePageState extends State<GamePage> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(body: GetBuilder<Store>(
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(30.0),
+        child: AppBar(
+          backgroundColor: Color(0xFFDC143C).withOpacity(0.35),
+          title: Text(
+            "Now playing: Contra II",
+            style: TextStyle(
+              fontSize: 17.0,
+              letterSpacing: 1.1,
+              fontFamily: 'Roboto',
+            ),
+          ),
+        ),
+      ),
+      body: GetBuilder<Store>(
       builder: (store) {
         setInitialOffset();
         return Directionality(
@@ -48,10 +63,10 @@ class _GamePageState extends State<GamePage> {
               stream: channel.stream,
               builder: (context, snapshot) {
             return Stack(
-              children: [
-                Container(
-                  color: Color(0xFFFFFFFF),
-                ),
+                  children: [
+                    Container(
+                      color: Color(0xFFFFFFFF),
+                    ),
 
                 // joypad overlay
                 Positioned(
