@@ -9,7 +9,6 @@ import 'package:web_socket_channel/io.dart';
 import 'package:sinix_android/widgets/joypad.dart';
 import 'package:sinix_android/widgets/rightpad.dart';
 import 'package:sinix_android/utils/store.dart';
-import 'package:sinix_android/widgets/pause.dart';
 
 class GamePage extends StatefulWidget {
   @override
@@ -41,8 +40,23 @@ class _GamePageState extends State<GamePage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(30.0),
+        child: AppBar(
+          backgroundColor: Color(0xFFDC143C).withOpacity(0.35),
+          automaticallyImplyLeading: false,
+          title: Text(
+            "Now playing: Contra II",
+            style: TextStyle(
+              fontSize: 17.0,
+              letterSpacing: 1.1,
+              fontFamily: 'Roboto',
+            ),
+          ),
+        ),
+      ),
       body: GetBuilder<Store>(
-        builder: (store) {
+      builder: (store) {
         setInitialOffset();
         return Directionality(
           textDirection: TextDirection.ltr,
@@ -94,10 +108,6 @@ class _GamePageState extends State<GamePage> {
                       this.channel.sink.add(jsonEncode(resp));
                     }),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: PauseButton(),
                 ),
                 SwitchPanel(
                   actions: [
