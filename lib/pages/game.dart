@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sinix_android/pages/edit_controller.dart';
+import 'package:sinix_android/widgets/pause.dart';
 import 'package:sinix_android/widgets/switch_panel.dart';
 import 'package:web_socket_channel/io.dart';
 
@@ -108,6 +109,10 @@ class _GamePageState extends State<GamePage> {
                       this.channel.sink.add(jsonEncode(resp));
                     }),
                   ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: PauseButton(),
                 ),
                 SwitchPanel(
                   actions: [
