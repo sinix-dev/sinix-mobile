@@ -44,6 +44,7 @@ class _GamePageState extends State<GamePage> {
         preferredSize: Size.fromHeight(30.0),
         child: AppBar(
           backgroundColor: Color(0xFFDC143C).withOpacity(0.35),
+          automaticallyImplyLeading: false,
           title: Text(
             "Now playing: Contra II",
             style: TextStyle(
