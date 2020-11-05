@@ -28,7 +28,7 @@ void main() async {
 
     Offset testCoordinate = Offset(60.0, 74.0);
 
-    await localStorage.saveCoordinates(testCoordinate, testCoordinate);
+    await localStorage.saveCoordinates(testCoordinate, testCoordinate, testCoordinate);
 
     localStorage.getCoordinates();
 

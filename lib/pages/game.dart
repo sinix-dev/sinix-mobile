@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sinix_android/pages/edit_controller.dart';
+import 'package:sinix_android/widgets/pause.dart';
 import 'package:sinix_android/widgets/switch_panel.dart';
 import 'package:web_socket_channel/io.dart';
 
@@ -24,6 +25,8 @@ class _GamePageState extends State<GamePage> {
 
   Offset rightpadOffset;
 
+  Offset pauseButtonOffset;
+
   final localStorage = Store.to.localStorage;
 
   void setInitialOffset() {
@@ -35,6 +38,11 @@ class _GamePageState extends State<GamePage> {
     rightpadOffset = Offset(
       double.parse(localStorage.rightpadCoordinate[0]),
       double.parse(localStorage.rightpadCoordinate[1]),
+    );
+
+    pauseButtonOffset = Offset(
+      double.parse(localStorage.pauseBtnCoordinate[0]),
+      double.parse(localStorage.pauseBtnCoordinate[1])
     );
   }
 
@@ -107,6 +115,14 @@ class _GamePageState extends State<GamePage> {
                       };
                       this.channel.sink.add(jsonEncode(resp));
                     }),
+                  ),
+                ),
+                Positioned(
+                  bottom: pauseButtonOffset.dy,
+                  right: pauseButtonOffset.dx,
+                  child: Hero(
+                    tag: "pause",
+                    child: PauseButton(onChange: (String val) {}),
                   ),
                 ),
                 SwitchPanel(

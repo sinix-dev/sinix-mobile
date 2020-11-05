@@ -5,6 +5,7 @@ import 'package:sinix_android/utils/store.dart';
 import 'package:sinix_android/widgets/joypad.dart';
 import 'package:sinix_android/widgets/rightpad.dart';
 import 'package:sinix_android/widgets/switch_panel.dart';
+import 'package:sinix_android/widgets/pause.dart';
 
 class EditController extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class EditController extends StatefulWidget {
 class _EditControllerState extends State<EditController> {
   Offset joypadOffset;
   Offset rightpadOffset;
+  Offset pauseOffset;
 
   final localStorage = Store.to.localStorage;
 
@@ -27,6 +29,11 @@ class _EditControllerState extends State<EditController> {
       double.parse(localStorage.rightpadCoordinate[0]),
       double.parse(localStorage.rightpadCoordinate[1]),
     );
+
+    pauseOffset = Offset(
+      double.parse(localStorage.pauseBtnCoordinate[0]),
+      double.parse(localStorage.pauseBtnCoordinate[1])
+    );
   }
 
   void resetOffset() {
@@ -37,6 +44,10 @@ class _EditControllerState extends State<EditController> {
     rightpadOffset = Offset(
       double.parse(localStorage.defaultCoordinate[0]),
       double.parse(localStorage.defaultCoordinate[1]),
+    );
+    pauseOffset = Offset(
+      370.0,
+      double.parse(localStorage.defaultCoordinate[1])
     );
   }
 
@@ -115,6 +126,32 @@ class _EditControllerState extends State<EditController> {
               ),
             ),
           ),
+          AnimatedPositioned(
+            duration: Duration(milliseconds: 100),
+            bottom: pauseOffset.dy,
+            right: pauseOffset.dx,
+            child: GestureDetector(
+              onPanUpdate: (details) {
+                setState(() {
+                  final position = details.globalPosition;
+                  if (position.dx > 130 && position.dx < size.width - 130)
+                    pauseOffset = pauseOffset.translate(-details.delta.dx, 0);
+
+                  if (position.dy > 100 && position.dy < size.height - 100)
+                    pauseOffset = pauseOffset.translate(0, -details.delta.dy);
+                });
+              },
+              child: Container(
+                decoration: BoxDecoration(),
+                child: AbsorbPointer(
+                  child: Hero(
+                    tag: "pause",
+                    child: PauseButton(onChange: (String val) {}),
+                  ),
+                ),
+              ),
+            ),
+          ),
           SwitchPanel(
             actions: [
               SwitchButton(
@@ -127,7 +164,7 @@ class _EditControllerState extends State<EditController> {
                 child: Icon(Icons.save,size: 30,),
                 onTap: () async {
                   await localStorage.saveCoordinates(
-                      joypadOffset, rightpadOffset);
+                      joypadOffset, rightpadOffset, pauseOffset);
                   Store.to.update();
                   Get.snackbar("Layout Saved", "");
                 },
