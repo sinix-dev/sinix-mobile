@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class PauseButton extends StatefulWidget {
-  @override
+  final void Function(String) onChange;
+
+  const PauseButton({
+    Key key,
+    @required this.onChange,
+  }) : super(key: key);
   _PauseButtonState createState() => _PauseButtonState();
 }
 

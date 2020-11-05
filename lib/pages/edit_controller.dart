@@ -46,8 +46,8 @@ class _EditControllerState extends State<EditController> {
       double.parse(localStorage.defaultCoordinate[1]),
     );
     pauseOffset = Offset(
-        double.parse(localStorage.pauseBtnCoordinate[0]),
-        double.parse(localStorage.pauseBtnCoordinate[1])
+      370.0,
+      double.parse(localStorage.defaultCoordinate[1])
     );
   }
 
@@ -137,7 +137,7 @@ class _EditControllerState extends State<EditController> {
                   if (position.dx > 130 && position.dx < size.width - 130)
                     pauseOffset = pauseOffset.translate(-details.delta.dx, 0);
 
-                  if (position.dy > 150 && position.dy < size.height - 150)
+                  if (position.dy > 100 && position.dy < size.height - 100)
                     pauseOffset = pauseOffset.translate(0, -details.delta.dy);
                 });
               },
@@ -146,7 +146,7 @@ class _EditControllerState extends State<EditController> {
                 child: AbsorbPointer(
                   child: Hero(
                     tag: "pause",
-                    child: PauseButton(),
+                    child: PauseButton(onChange: (String val) {}),
                   ),
                 ),
               ),
