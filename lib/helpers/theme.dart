@@ -8,6 +8,7 @@ final ThemeData theme = ThemeData(
   backgroundColor: Colors.white,
   accentColor: Colors.white,
   primaryColor: Color(0xFFDC143C),
+  secondaryHeaderColor: Colors.black
 );
 
 final ThemeData darkTheme = ThemeData(
@@ -16,6 +17,7 @@ final ThemeData darkTheme = ThemeData(
   backgroundColor: Color(0xFF223346),
   accentColor: Colors.white.withOpacity(0.35),
   primaryColor: Colors.white,
+  secondaryHeaderColor: Colors.white
 );
 
 // Creates the Material Color from given color value

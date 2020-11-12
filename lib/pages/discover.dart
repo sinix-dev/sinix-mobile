@@ -55,8 +55,8 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Container(
-        color: Colors.white,
+      child: new Builder(builder: (context) => new Container(
+        color: Theme.of(context).backgroundColor,
         child: Padding(
           padding: const EdgeInsets.all(35.0),
           child: Directionality(
@@ -67,9 +67,10 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
                 Text(
                   "Available Devices",
                   style: TextStyle(
-                    color: Sinix.textColor,
+                    color: Theme.of(context).secondaryHeaderColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
+                    letterSpacing: 1.1
                   ),
                 ),
                 SizedBox(
@@ -79,7 +80,9 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
                   child: SmartRefresher(
                     enablePullDown: true,
                     enablePullUp: true,
-                    header: MaterialClassicHeader(),
+                    header: MaterialClassicHeader(
+                      color: Colors.blue,
+                    ),
                     controller: _refreshController,
                     onRefresh: scan,
                     child: _isListEmpty ?
@@ -98,7 +101,7 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
           ),
         ),
       ),
-    );
+    ));
   }
 }
 
@@ -117,8 +120,8 @@ class Device extends StatelessWidget {
           Text(
           ipAddr,
           style: TextStyle(
-            color: Sinix.textColor,
-            fontSize: 18,
+              color: Theme.of(context).secondaryHeaderColor,
+              fontSize: 18,
             ),
           ),
         ],
