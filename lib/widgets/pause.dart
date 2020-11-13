@@ -17,9 +17,14 @@ class _PauseButtonState extends State<PauseButton> {
       margin: EdgeInsets.only(bottom: 40.0),
       child: ElevatedButton(
         onPressed: () {},
-        child: Text('Pause'),
+        child: Text(
+          'Pause',
+          style: TextStyle(
+            color: Theme.of(context).backgroundColor
+          ),
+        ),
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFDC143C)),
+          backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).primaryColor),
         ),
       ),
     );

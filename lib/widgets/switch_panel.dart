@@ -37,7 +37,7 @@ class _SwitchPanelState extends State<SwitchPanel> {
           alignment: Alignment(0.8, 0),
           width: 60,
           decoration: BoxDecoration(
-            color: Color(0xFFDC143C).withOpacity(0.35),
+            color: Theme.of(context).highlightColor,
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(12),
               bottomRight: Radius.circular(12),
