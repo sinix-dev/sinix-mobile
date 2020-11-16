@@ -68,7 +68,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> with WidgetsBindingObse
                     controller: controller,
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: Theme.of(context).accentColor,
+                      fillColor: Colors.white.withOpacity(0.12),
                       hintText: "USERNAME",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(3.0),

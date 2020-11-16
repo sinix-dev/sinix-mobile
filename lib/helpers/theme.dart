@@ -6,7 +6,6 @@ final ThemeData theme = ThemeData(
   fontFamily: 'Roboto',
   primarySwatch: createMaterialColor(Color(0xFFDC143C)),
   backgroundColor: Colors.white,
-  accentColor: Colors.white,
   primaryColor: Color(0xFFDC143C),
 );
 
@@ -14,7 +13,6 @@ final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   fontFamily: 'Roboto',
   backgroundColor: Color(0xFF223346),
-  accentColor: Colors.white.withOpacity(0.35),
   primaryColor: Colors.white,
 );
 
