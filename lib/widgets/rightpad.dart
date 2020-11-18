@@ -17,10 +17,10 @@ class RightpadState extends State<Rightpad> {
     return Transform.rotate(
       angle: pi / 4,
       child: SizedBox(
-          height: 200,
-          width: 200,
-          child: Container(
-              child: Row(children: <Widget>[
+        height: 200,
+        width: 200,
+        child: Container(
+          child: Row(children: <Widget>[
             Column(children: <Widget>[
               Button(
                 name: "Y",
@@ -49,7 +49,9 @@ class RightpadState extends State<Rightpad> {
                 },
               ),
             ]),
-          ]))),
+          ])
+        )
+      ),
     );
   }
 }
@@ -75,7 +77,7 @@ class ButtonState extends State<Button> {
           child: GestureDetector(
               child: Container(
                   decoration: BoxDecoration(
-                    color: Color(0xFFDC143C),
+                    color: Theme.of(context).canvasColor,
                     borderRadius: BorderRadius.circular(90),
                   ),
                   child: SizedBox(
