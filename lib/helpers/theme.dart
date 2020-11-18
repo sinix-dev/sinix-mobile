@@ -7,6 +7,7 @@ final ThemeData theme = ThemeData(
   primarySwatch: createMaterialColor(Color(0xFFDC143C)),
   backgroundColor: Colors.white,
   primaryColor: Color(0xFFDC143C),
+  secondaryHeaderColor: Colors.black
 );
 
 final ThemeData darkTheme = ThemeData(
@@ -14,6 +15,7 @@ final ThemeData darkTheme = ThemeData(
   fontFamily: 'Roboto',
   backgroundColor: Color(0xFF223346),
   primaryColor: Colors.white,
+  secondaryHeaderColor: Colors.white
 );
 
 // Creates the Material Color from given color value
