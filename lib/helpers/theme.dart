@@ -13,7 +13,6 @@ final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   fontFamily: 'Roboto',
   backgroundColor: Color(0xFF223346),
-  accentColor: Colors.white.withOpacity(0.35),
   primaryColor: Colors.white,
 );
 
