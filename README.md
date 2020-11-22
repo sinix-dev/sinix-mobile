@@ -7,9 +7,6 @@
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/sinix-dev/sinix-android.svg)](https://github.com/sinix-dev/sinix-android/pulls)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr-closed/sinix-dev/sinix-android.svg)](https://github.com/sinix-dev/sinix-android/pulls?q=is%3Apr+is%3Aclosed)
 
-
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com)
 ## 👋 Introduction
 
 Welcome contributors! This is the mobile joystick app for [Sinix](https://github.com/sinix-dev/sinix) gaming platform.
@@ -38,13 +35,3 @@ You can refer to the following articles on the basics of Git and Github and also
 ## 💻 Languages used in this project
 
 <img alt="Dart" src="https://img.shields.io/badge/dart-%230175C2.svg?&style=for-the-badge&logo=dart&logoColor=white" height="30">
-
-## ❤️ Project Admin
-
-|<a href="https://github.com/sanket143"><img src="https://avatars0.githubusercontent.com/u/26973649?s=460&u=a8ca9f7d7813e0ac7b9bee1d604462c84b7aeb80&v=4" width=150px height=150px /></a>|
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|**[Sanket Chaudhari](https://twitter.com/sanket_m2)**|
-
-|<a href="https://github.com/janvig"><img src="https://avatars3.githubusercontent.com/u/34552448?s=460&u=8ab57abd5a58c2474cb14503049f6d16cbefc846&v=4" width=150px height=150px /></a>|
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|**[Jahnavi Gupta](https://twitter.com/janvig003)**|
