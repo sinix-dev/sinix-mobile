@@ -13,7 +13,7 @@ Welcome contributors! This is the mobile joystick app for [Sinix](https://github
 
 ## ⭐ How to get started?
 
-You can refer to the following articles on the basics of Git and Github and also contact the Project Mentors, in case you are stuck:
+You can refer to the following articles on the basics of Git and Github:
 
 - [Watch this video to get started, if you have no clue about open source](https://youtu.be/SL5KKdmvJ1U)
 - [Forking a Repo](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)
