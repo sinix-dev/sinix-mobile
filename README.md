@@ -1,4 +1,4 @@
-# Sinix Android
+# Sinix Mobile
 [![GitHub forks](https://img.shields.io/github/forks/sinix-dev/sinix-android.svg?style=social&label=Fork&maxAge=43200)](https://github.com/sinix-dev/sinix-android/network/members)
 [![GitHub stars](https://img.shields.io/github/stars/sinix-dev/sinix-android.svg?style=social&label=Stars&maxAge=43200)](https://github.com/sinix-dev/sinix-android/stargazers)
 
