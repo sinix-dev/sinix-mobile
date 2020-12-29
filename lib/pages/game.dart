@@ -51,7 +51,7 @@ class _GamePageState extends State<GamePage> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(30.0),
         child: AppBar(
-          backgroundColor: Color(0xFFDC143C).withOpacity(0.35),
+          backgroundColor: Theme.of(context).highlightColor,
           automaticallyImplyLeading: false,
           title: Text(
             "Now playing: Contra II",
@@ -59,6 +59,7 @@ class _GamePageState extends State<GamePage> {
               fontSize: 17.0,
               letterSpacing: 1.1,
               fontFamily: 'Roboto',
+              color: Color(0xFFFFFFFF),
             ),
           ),
         ),
@@ -74,7 +75,7 @@ class _GamePageState extends State<GamePage> {
             return Stack(
               children: [
                 Container(
-                  color: Color(0xFFFFFFFF),
+                  color: Theme.of(context).backgroundColor,
                 ),
 
                 // joypad overlay
