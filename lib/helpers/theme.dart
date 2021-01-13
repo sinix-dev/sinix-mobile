@@ -9,7 +9,7 @@ final ThemeData theme = ThemeData(
   primaryColor: Color(0xFFDC143C),
   highlightColor: Color(0xFFDC143C).withOpacity(0.35),
   secondaryHeaderColor: Colors.black,
-  canvasColor: Color(0xFFDC143C)
+  canvasColor: Color(0xFFDC143C),
 );
 
 final ThemeData darkTheme = ThemeData(
@@ -19,7 +19,7 @@ final ThemeData darkTheme = ThemeData(
   primaryColor: Colors.white,
   secondaryHeaderColor: Colors.white,
   highlightColor: Colors.white.withOpacity(0.35),
-  canvasColor: Colors.white.withOpacity(0.35)
+  canvasColor: Colors.white.withOpacity(0.35),
 );
 
 // Creates the Material Color from given color value

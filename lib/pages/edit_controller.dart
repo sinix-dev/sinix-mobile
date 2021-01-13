@@ -30,10 +30,8 @@ class _EditControllerState extends State<EditController> {
       double.parse(localStorage.rightpadCoordinate[1]),
     );
 
-    pauseOffset = Offset(
-      double.parse(localStorage.pauseBtnCoordinate[0]),
-      double.parse(localStorage.pauseBtnCoordinate[1])
-    );
+    pauseOffset = Offset(double.parse(localStorage.pauseBtnCoordinate[0]),
+        double.parse(localStorage.pauseBtnCoordinate[1]));
   }
 
   void resetOffset() {
@@ -47,7 +45,7 @@ class _EditControllerState extends State<EditController> {
     );
     pauseOffset = Offset(
       370.0,
-      double.parse(localStorage.defaultCoordinate[1])
+      double.parse(localStorage.defaultCoordinate[1]),
     );
   }
 
@@ -71,9 +69,8 @@ class _EditControllerState extends State<EditController> {
                 child: Text(
                   "Edit Mode",
                   style: TextStyle(
-                    fontSize: 20.0,
-                    color: Theme.of(context).secondaryHeaderColor
-                  ),
+                      fontSize: 20.0,
+                      color: Theme.of(context).secondaryHeaderColor),
                 ),
               ),
             ),
@@ -86,10 +83,16 @@ class _EditControllerState extends State<EditController> {
                   final position = details.globalPosition;
                   setState(() {
                     if (position.dx > 30 && position.dx < size.width - 30)
-                      joypadOffset = joypadOffset.translate(details.delta.dx, 0);
+                      joypadOffset = joypadOffset.translate(
+                        details.delta.dx,
+                        0,
+                      );
 
                     if (position.dy > 90 && position.dy < size.height - 90)
-                      joypadOffset = joypadOffset.translate(0, -details.delta.dy);
+                      joypadOffset = joypadOffset.translate(
+                        0,
+                        -details.delta.dy,
+                      );
                   });
                 },
                 child: Container(
@@ -112,12 +115,16 @@ class _EditControllerState extends State<EditController> {
                   setState(() {
                     final position = details.globalPosition;
                     if (position.dx > 130 && position.dx < size.width - 130)
-                      rightpadOffset =
-                          rightpadOffset.translate(-details.delta.dx, 0);
+                      rightpadOffset = rightpadOffset.translate(
+                        -details.delta.dx,
+                        0,
+                      );
 
                     if (position.dy > 150 && position.dy < size.height - 150)
-                      rightpadOffset =
-                          rightpadOffset.translate(0, -details.delta.dy);
+                      rightpadOffset = rightpadOffset.translate(
+                        0,
+                        -details.delta.dy,
+                      );
                   });
                 },
                 child: Container(
@@ -160,22 +167,34 @@ class _EditControllerState extends State<EditController> {
             SwitchPanel(
               actions: [
                 SwitchButton(
-                  child: Icon(Icons.close,size: 30,),
+                  child: Icon(
+                    Icons.close,
+                    size: 30,
+                  ),
                   onTap: () {
                     Navigator.of(context).pop();
                   },
                 ),
                 SwitchButton(
-                  child: Icon(Icons.save,size: 30,),
+                  child: Icon(
+                    Icons.save,
+                    size: 30,
+                  ),
                   onTap: () async {
                     await localStorage.saveCoordinates(
-                        joypadOffset, rightpadOffset, pauseOffset);
+                      joypadOffset,
+                      rightpadOffset,
+                      pauseOffset,
+                    );
                     Store.to.update();
                     Get.snackbar("Layout Saved", "");
                   },
                 ),
                 SwitchButton(
-                  child: Icon(Icons.restore,size: 30,),
+                  child: Icon(
+                    Icons.restore,
+                    size: 30,
+                  ),
                   onTap: () {
                     setState(() {
                       resetOffset();

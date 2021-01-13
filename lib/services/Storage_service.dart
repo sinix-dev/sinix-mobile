@@ -32,9 +32,10 @@ class LocalStorage {
   }
 
   Future<void> saveCoordinates(
-      Offset joypadCoordinate,
-      Offset rightpadCoordinate,
-      Offset pauseBtnCoordinate) async {
+    Offset joypadCoordinate,
+    Offset rightpadCoordinate,
+    Offset pauseBtnCoordinate,
+  ) async {
     this.joypadCoordinate[0] = joypadCoordinate.dx.toString();
     this.joypadCoordinate[1] = joypadCoordinate.dy.toString();
 

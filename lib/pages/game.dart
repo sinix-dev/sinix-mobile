@@ -42,7 +42,7 @@ class _GamePageState extends State<GamePage> {
 
     pauseButtonOffset = Offset(
       double.parse(localStorage.pauseBtnCoordinate[0]),
-      double.parse(localStorage.pauseBtnCoordinate[1])
+      double.parse(localStorage.pauseBtnCoordinate[1]),
     );
   }
 
@@ -65,84 +65,85 @@ class _GamePageState extends State<GamePage> {
         ),
       ),
       body: GetBuilder<Store>(
-      builder: (store) {
-        setInitialOffset();
-        return Directionality(
-          textDirection: TextDirection.ltr,
-          child: StreamBuilder(
-              stream: channel.stream,
-              builder: (context, snapshot) {
-            return Stack(
-              children: [
-                Container(
-                  color: Theme.of(context).backgroundColor,
-                ),
-
-                // joypad overlay
-                Positioned(
-                  bottom: joypadOffset.dy,
-                  left: joypadOffset.dx,
-                  child: Hero(
-                    tag: "joypad",
-                    child: Joypad(onChange: (Offset delta) {
-                      var resp = {
-                        "event_type": "STICK1",
-                        "payload": {
-                          "x": delta.dx,
-                          "y": delta.dy,
-                          "username": user.username,
-                        }
-                      };
-                      this.channel.sink.add(jsonEncode(resp));
-                    }),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Text(snapshot.hasData ? "${snapshot.data}" : ""),
-                ),
-                Positioned(
-                  bottom: rightpadOffset.dy,
-                  right: rightpadOffset.dx,
-                  child: Hero(
-                    tag: "rightpad",
-                    child: Rightpad(onChange: (String val) {
-                      var resp = {
-                        "event_type": "BUTTON",
-                        "payload": {
-                          "val": val,
-                          "username": user.username,
-                        }
-                      };
-                      this.channel.sink.add(jsonEncode(resp));
-                    }),
-                  ),
-                ),
-                Positioned(
-                  bottom: pauseButtonOffset.dy,
-                  right: pauseButtonOffset.dx,
-                  child: Hero(
-                    tag: "pause",
-                    child: PauseButton(onChange: (String val) {}),
-                  ),
-                ),
-                SwitchPanel(
-                  actions: [
-                    SwitchButton(
-                      child: IconButton(
-                        icon: Icon(Icons.edit),
-                        onPressed: () {
-                          Get.to(EditController());
-                        },
+        builder: (store) {
+          setInitialOffset();
+          return Directionality(
+            textDirection: TextDirection.ltr,
+            child: StreamBuilder(
+                stream: channel.stream,
+                builder: (context, snapshot) {
+                  return Stack(
+                    children: [
+                      Container(
+                        color: Theme.of(context).backgroundColor,
                       ),
-                    )
-                  ],
-                )
-              ],
-            );
-          }),
-        );
-      },
-    ));
+
+                      // joypad overlay
+                      Positioned(
+                        bottom: joypadOffset.dy,
+                        left: joypadOffset.dx,
+                        child: Hero(
+                          tag: "joypad",
+                          child: Joypad(onChange: (Offset delta) {
+                            var resp = {
+                              "event_type": "STICK1",
+                              "payload": {
+                                "x": delta.dx,
+                                "y": delta.dy,
+                                "username": user.username,
+                              }
+                            };
+                            this.channel.sink.add(jsonEncode(resp));
+                          }),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(snapshot.hasData ? "${snapshot.data}" : ""),
+                      ),
+                      Positioned(
+                        bottom: rightpadOffset.dy,
+                        right: rightpadOffset.dx,
+                        child: Hero(
+                          tag: "rightpad",
+                          child: Rightpad(onChange: (String val) {
+                            var resp = {
+                              "event_type": "BUTTON",
+                              "payload": {
+                                "val": val,
+                                "username": user.username,
+                              }
+                            };
+                            this.channel.sink.add(jsonEncode(resp));
+                          }),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: pauseButtonOffset.dy,
+                        right: pauseButtonOffset.dx,
+                        child: Hero(
+                          tag: "pause",
+                          child: PauseButton(onChange: (String val) {}),
+                        ),
+                      ),
+                      SwitchPanel(
+                        actions: [
+                          SwitchButton(
+                            child: IconButton(
+                              icon: Icon(Icons.edit),
+                              onPressed: () {
+                                Get.to(EditController());
+                              },
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  );
+                }),
+          );
+        },
+      ),
+    );
   }
 }

@@ -11,10 +11,13 @@ class OnBoardingPage extends StatefulWidget {
   _OnBoardingPageState createState() => _OnBoardingPageState();
 }
 
-class _OnBoardingPageState extends State<OnBoardingPage> with WidgetsBindingObserver {
+class _OnBoardingPageState extends State<OnBoardingPage>
+    with WidgetsBindingObserver {
   final controller = TextEditingController();
-  String imageAsset = SchedulerBinding.instance.window.platformBrightness == Brightness.light ?
-      'assets/icon/logo_light.png' : 'assets/icon/logo_dark.png';
+  String imageAsset =
+      SchedulerBinding.instance.window.platformBrightness == Brightness.light
+          ? 'assets/icon/logo_light.png'
+          : 'assets/icon/logo_dark.png';
 
   @override
   void initState() {
@@ -24,8 +27,10 @@ class _OnBoardingPageState extends State<OnBoardingPage> with WidgetsBindingObse
 
   @override
   void didChangePlatformBrightness() {
-    imageAsset = SchedulerBinding.instance.window.platformBrightness == Brightness.light ?
-        'assets/icon/logo_light.png' : 'assets/icon/logo_dark.png';
+    imageAsset =
+        SchedulerBinding.instance.window.platformBrightness == Brightness.light
+            ? 'assets/icon/logo_light.png'
+            : 'assets/icon/logo_dark.png';
     super.didChangePlatformBrightness();
     setState(() {
       developer.log("rebuilt widget tree");
@@ -87,18 +92,25 @@ class _OnBoardingPageState extends State<OnBoardingPage> with WidgetsBindingObse
                   },
                   child: Text(
                     'ENTER',
-                    style: TextStyle(
-                      color: Theme.of(context).backgroundColor
-                    ),
+                    style: TextStyle(color: Theme.of(context).backgroundColor),
                   ),
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).primaryColor),
-                    padding: MaterialStateProperty.all<EdgeInsets>(
-                      EdgeInsets.fromLTRB(30.0, 15.0, 30.0, 15.0)
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      Theme.of(context).primaryColor,
                     ),
-                    shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    )),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      EdgeInsets.fromLTRB(
+                        30.0,
+                        15.0,
+                        30.0,
+                        15.0,
+                      ),
+                    ),
+                    shape: MaterialStateProperty.all<OutlinedBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
                   ),
                 )
               ],
