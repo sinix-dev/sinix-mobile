@@ -55,56 +55,57 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
   @override
   Widget build(BuildContext context) {
     return Material(
-        child: new Builder(
-      builder: (context) => new Container(
-        color: Theme.of(context).backgroundColor,
-        child: Padding(
-          padding: const EdgeInsets.all(35.0),
-          child: Directionality(
-            textDirection: TextDirection.ltr,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  "Available Devices",
-                  style: TextStyle(
-                    color: Theme.of(context).secondaryHeaderColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
-                    letterSpacing: 1.1,
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Expanded(
-                  child: SmartRefresher(
-                    enablePullDown: true,
-                    enablePullUp: true,
-                    header: MaterialClassicHeader(
-                      color: Colors.blue,
+      child: new Builder(
+        builder: (context) => new Container(
+          color: Theme.of(context).backgroundColor,
+          child: Padding(
+            padding: const EdgeInsets.all(35.0),
+            child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "Available Devices",
+                    style: TextStyle(
+                      color: Theme.of(context).secondaryHeaderColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      letterSpacing: 1.1,
                     ),
-                    controller: _refreshController,
-                    onRefresh: scan,
-                    child: _isListEmpty
-                        ? Text(
-                            'No Sinix servers found',
-                            style: TextStyle(fontSize: 17),
-                          )
-                        : ListView.builder(
-                            itemCount: deviceList.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Device(deviceList[index]);
-                            },
-                          ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Expanded(
+                    child: SmartRefresher(
+                      enablePullDown: true,
+                      enablePullUp: true,
+                      header: MaterialClassicHeader(
+                        color: Colors.blue,
+                      ),
+                      controller: _refreshController,
+                      onRefresh: scan,
+                      child: _isListEmpty
+                          ? Text(
+                              'No Sinix servers found',
+                              style: TextStyle(fontSize: 17),
+                            )
+                          : ListView.builder(
+                              itemCount: deviceList.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Device(deviceList[index]);
+                              },
+                            ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
-    ));
+    );
   }
 }
 
