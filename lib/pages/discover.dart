@@ -25,7 +25,7 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
 
     final stream = NetworkAnalyzer.discover2(subnet, port);
 
-    deviceList = [];
+    deviceList = ['127.0.0.1'];
 
     stream.listen((NetworkAddress addr) {
       if (addr.exists) {
@@ -128,7 +128,8 @@ class Device extends StatelessWidget {
       ),
       onTap: () async {
         final response = await Store.to.createConnection(ipAddr);
-        if (response.statusCode == 200) {
+        Get.to(GamePage());
+        /*if (response.statusCode == 200) {
           Get.to(GamePage());
         } else {
           if (response.statusCode == 408) {
@@ -137,7 +138,7 @@ class Device extends StatelessWidget {
             Get.snackbar('Connection Error',
                 'Couldn\'t found server with address: $ipAddr');
           }
-        }
+        }*/
       },
     );
   }

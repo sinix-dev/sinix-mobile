@@ -69,10 +69,10 @@ class _GamePageState extends State<GamePage> {
         setInitialOffset();
         return Directionality(
           textDirection: TextDirection.ltr,
-          child: StreamBuilder(
+          child: /*StreamBuilder(
               stream: channel.stream,
               builder: (context, snapshot) {
-            return Stack(
+            return*/ Stack(
               children: [
                 Container(
                   color: Theme.of(context).backgroundColor,
@@ -84,7 +84,7 @@ class _GamePageState extends State<GamePage> {
                   left: joypadOffset.dx,
                   child: Hero(
                     tag: "joypad",
-                    child: Joypad(onChange: (Offset delta) {
+                    child: Joypad(onChange: (Offset delta) {/*
                       var resp = {
                         "event_type": "STICK1",
                         "payload": {
@@ -94,19 +94,19 @@ class _GamePageState extends State<GamePage> {
                         }
                       };
                       this.channel.sink.add(jsonEncode(resp));
-                    }),
+                    */}),
                   ),
                 ),
-                Align(
+                /*Align(
                   alignment: Alignment.bottomCenter,
                   child: Text(snapshot.hasData ? "${snapshot.data}" : ""),
-                ),
+                ),*/
                 Positioned(
                   bottom: rightpadOffset.dy,
                   right: rightpadOffset.dx,
                   child: Hero(
                     tag: "rightpad",
-                    child: Rightpad(onChange: (String val) {
+                    child: Rightpad(onChange: (String val) {/*
                       var resp = {
                         "event_type": "BUTTON",
                         "payload": {
@@ -115,7 +115,7 @@ class _GamePageState extends State<GamePage> {
                         }
                       };
                       this.channel.sink.add(jsonEncode(resp));
-                    }),
+                    */}),
                   ),
                 ),
                 Positioned(
@@ -139,8 +139,8 @@ class _GamePageState extends State<GamePage> {
                   ],
                 )
               ],
-            );
-          }),
+            )
+          // }),
         );
       },
     ));
