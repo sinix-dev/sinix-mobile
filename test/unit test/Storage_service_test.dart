@@ -28,14 +28,22 @@ void main() async {
 
     Offset testCoordinate = Offset(60.0, 74.0);
 
-    await localStorage.saveCoordinates(testCoordinate, testCoordinate, testCoordinate);
+    await localStorage.saveCoordinates(
+      testCoordinate,
+      testCoordinate,
+      testCoordinate,
+    );
 
     localStorage.getCoordinates();
 
-    expect(localStorage.joypadCoordinate,
-        [testCoordinate.dx.toString(), testCoordinate.dy.toString()]);
+    expect(
+      localStorage.joypadCoordinate,
+      [testCoordinate.dx.toString(), testCoordinate.dy.toString()],
+    );
 
-    expect(localStorage.rightpadCoordinate,
-        [testCoordinate.dx.toString(), testCoordinate.dy.toString()]);
+    expect(
+      localStorage.rightpadCoordinate,
+      [testCoordinate.dx.toString(), testCoordinate.dy.toString()],
+    );
   });
 }

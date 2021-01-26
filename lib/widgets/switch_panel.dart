@@ -87,7 +87,7 @@ class SwitchButton extends StatelessWidget {
         onTap.call();
       },
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 8.0),
+        margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0),
         child: child,
       ),
     );

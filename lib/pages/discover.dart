@@ -37,7 +37,7 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
       }
     }, onDone: () {
       _refreshController.refreshCompleted();
-      if(deviceList.isEmpty) {
+      if (deviceList.isEmpty) {
         setState(() {
           _isListEmpty = true;
         });
@@ -55,53 +55,57 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: new Builder(builder: (context) => new Container(
-        color: Theme.of(context).backgroundColor,
-        child: Padding(
-          padding: const EdgeInsets.all(35.0),
-          child: Directionality(
-            textDirection: TextDirection.ltr,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  "Available Devices",
-                  style: TextStyle(
-                    color: Theme.of(context).secondaryHeaderColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
-                    letterSpacing: 1.1
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Expanded(
-                  child: SmartRefresher(
-                    enablePullDown: true,
-                    enablePullUp: true,
-                    header: MaterialClassicHeader(
-                      color: Colors.blue,
-                    ),
-                    controller: _refreshController,
-                    onRefresh: scan,
-                    child: _isListEmpty ?
-                    Text('No Sinix servers found',
-                    style: TextStyle(fontSize: 17),) :
-                    ListView.builder(
-                      itemCount: deviceList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Device(deviceList[index]);
-                      },
+      child: new Builder(
+        builder: (context) => new Container(
+          color: Theme.of(context).backgroundColor,
+          child: Padding(
+            padding: const EdgeInsets.all(35.0),
+            child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "Available Devices",
+                    style: TextStyle(
+                      color: Theme.of(context).secondaryHeaderColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      letterSpacing: 1.1,
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Expanded(
+                    child: SmartRefresher(
+                      enablePullDown: true,
+                      enablePullUp: true,
+                      header: MaterialClassicHeader(
+                        color: Colors.blue,
+                      ),
+                      controller: _refreshController,
+                      onRefresh: scan,
+                      child: _isListEmpty
+                          ? Text(
+                              'No Sinix servers found',
+                              style: TextStyle(fontSize: 17),
+                            )
+                          : ListView.builder(
+                              itemCount: deviceList.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Device(deviceList[index]);
+                              },
+                            ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
-    ));
+    );
   }
 }
 
@@ -116,10 +120,12 @@ class Device extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Icon(FeatherIcons.cast),
-          SizedBox(width: 10.0,),
+          SizedBox(
+            width: 10.0,
+          ),
           Text(
-          ipAddr,
-          style: TextStyle(
+            ipAddr,
+            style: TextStyle(
               color: Theme.of(context).secondaryHeaderColor,
               fontSize: 18,
             ),
@@ -133,10 +139,15 @@ class Device extends StatelessWidget {
           Get.to(GamePage());
         } else {
           if (response.statusCode == 408) {
-            Get.snackbar('Connection Timeout', 'Selected server maybe dead!');
+            Get.snackbar(
+              'Connection Timeout',
+              'Selected server maybe dead!',
+            );
           } else if (response.statusCode == 502) {
-            Get.snackbar('Connection Error',
-                'Couldn\'t found server with address: $ipAddr');
+            Get.snackbar(
+              'Connection Error',
+              'Couldn\'t found server with address: $ipAddr',
+            );
           }
         }*/
       },

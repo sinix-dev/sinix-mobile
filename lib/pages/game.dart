@@ -42,7 +42,7 @@ class _GamePageState extends State<GamePage> {
 
     pauseButtonOffset = Offset(
       double.parse(localStorage.pauseBtnCoordinate[0]),
-      double.parse(localStorage.pauseBtnCoordinate[1])
+      double.parse(localStorage.pauseBtnCoordinate[1]),
     );
   }
 

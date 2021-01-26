@@ -20,37 +20,43 @@ class RightpadState extends State<Rightpad> {
         height: 200,
         width: 200,
         child: Container(
-          child: Row(children: <Widget>[
-            Column(children: <Widget>[
-              Button(
-                name: "Y",
-                onTap: (String val) {
-                  widget.onChange(val);
-                },
+          child: Row(
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Button(
+                    name: "Y",
+                    onTap: (String val) {
+                      widget.onChange(val);
+                    },
+                  ),
+                  Button(
+                    name: "X",
+                    onTap: (String val) {
+                      widget.onChange(val);
+                    },
+                  ),
+                ],
               ),
-              Button(
-                name: "X",
-                onTap: (String val) {
-                  widget.onChange(val);
-                },
+              Column(
+                children: <Widget>[
+                  Button(
+                    name: "B",
+                    onTap: (String val) {
+                      widget.onChange(val);
+                    },
+                  ),
+                  Button(
+                    name: "A",
+                    onTap: (String val) {
+                      widget.onChange(val);
+                    },
+                  ),
+                ],
               ),
-            ]),
-            Column(children: <Widget>[
-              Button(
-                name: "B",
-                onTap: (String val) {
-                  widget.onChange(val);
-                },
-              ),
-              Button(
-                name: "A",
-                onTap: (String val) {
-                  widget.onChange(val);
-                },
-              ),
-            ]),
-          ])
-        )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -73,27 +79,36 @@ class ButtonState extends State<Button> {
     return Material(
       color: Colors.transparent,
       child: Padding(
-          padding: EdgeInsets.all(10.0),
-          child: GestureDetector(
-              child: Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).canvasColor,
-                    borderRadius: BorderRadius.circular(90),
+        padding: EdgeInsets.all(10.0),
+        child: GestureDetector(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).canvasColor,
+              borderRadius: BorderRadius.circular(90),
+            ),
+            child: SizedBox(
+              height: 70,
+              width: 70,
+              child: Center(
+                child: Transform.rotate(
+                  angle: -pi / 4,
+                  child: Text(
+                    widget.name,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                      color: Colors.white,
+                    ),
                   ),
-                  child: SizedBox(
-                      height: 70,
-                      width: 70,
-                      child: Center(
-                          child: Transform.rotate(
-                              angle: -pi / 4,
-                              child: Text(widget.name,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 25,
-                                      color: Colors.white)))))),
-              onTap: () {
-                widget.onTap(widget.name);
-              })),
+                ),
+              ),
+            ),
+          ),
+          onTap: () {
+            widget.onTap(widget.name);
+          },
+        ),
+      ),
     );
   }
 }

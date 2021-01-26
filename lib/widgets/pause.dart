@@ -19,12 +19,12 @@ class _PauseButtonState extends State<PauseButton> {
         onPressed: () {},
         child: Text(
           'Pause',
-          style: TextStyle(
-            color: Theme.of(context).backgroundColor
-          ),
+          style: TextStyle(color: Theme.of(context).backgroundColor),
         ),
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).primaryColor),
+          backgroundColor: MaterialStateProperty.all<Color>(
+            Theme.of(context).primaryColor,
+          ),
         ),
       ),
     );
