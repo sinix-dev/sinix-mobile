@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sinix_android/helpers/theme.dart';
+import 'package:sinix_android/pages/discover.dart';
 import 'package:sinix_android/pages/game.dart';
 import 'package:sinix_android/pages/onboarding.dart';
 import 'package:sinix_android/utils/store.dart';
@@ -32,7 +33,7 @@ class App extends StatelessWidget {
       theme: theme,
       darkTheme: darkTheme,
       home: Scaffold(
-        body: OnBoardingPage(),
+        body: Store.to.localStorage.firstOpen ? OnBoardingPage() : DiscoverDevices(),
       ),
     );
   }
