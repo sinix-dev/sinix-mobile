@@ -19,10 +19,6 @@ class LocalStorage {
     firstOpen = prefs.getBool('firstOpen') ?? true;
     userName = prefs.getString('userName') ?? "";
 
-    await prefs.setStringList("joypadCoordinate", defaultCoordinate);
-    await prefs.setStringList("rightpadCoordinate", defaultCoordinate);
-    await prefs.setStringList("pauseBtnCoordinate", defaultCoordinate);
-
     getCoordinates();
   }
 
@@ -33,6 +29,12 @@ class LocalStorage {
         prefs.getStringList("rightpadCoordinate");
     pauseBtnCoordinate =
         prefs.getStringList("pauseBtnCoordinate");
+  }
+
+  Future<void> initialiseCoordinates() async {
+    await prefs.setStringList("joypadCoordinate", defaultCoordinate);
+    await prefs.setStringList("rightpadCoordinate", defaultCoordinate);
+    await prefs.setStringList("pauseBtnCoordinate", defaultCoordinate);
   }
 
   Future<void> saveCoordinates(

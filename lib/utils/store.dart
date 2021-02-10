@@ -37,6 +37,7 @@ class Store extends GetxController {
   Future<void> saveUserName(String userName) async {
     user.username = userName;
     await localStorage.prefs.setString('userName', userName);
+    await localStorage.initialiseCoordinates();
   }
 
   Future<http.Response> createConnection(
