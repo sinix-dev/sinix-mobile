@@ -30,6 +30,9 @@ class Store extends GetxController {
 
   Future<void> init() async {
     await localStorage.init();
+    if (localStorage.firstOpen) {
+      await localStorage.initialiseCoordinates();
+    }
     localStorage.prefs.setBool('firstOpen', false);
     user.username = localStorage.userName;
   }
