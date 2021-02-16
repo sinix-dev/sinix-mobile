@@ -84,17 +84,19 @@ class _GamePageState extends State<GamePage> {
                         left: joypadOffset.dx,
                         child: Hero(
                           tag: "joypad",
-                          child: Joypad(onChange: (Offset delta) {
-                            var resp = {
-                              "event_type": "STICK1",
-                              "payload": {
-                                "x": delta.dx,
-                                "y": delta.dy,
-                                "username": user.username,
-                              }
-                            };
-                            this.channel.sink.add(jsonEncode(resp));
-                          }),
+                          child: Joypad(
+                            onChange: (Offset delta) {
+                              var resp = {
+                                "event_type": "STICK1",
+                                "payload": {
+                                  "x": delta.dx,
+                                  "y": delta.dy,
+                                  "username": user.username,
+                                }
+                              };
+                              this.channel.sink.add(jsonEncode(resp));
+                            },
+                          ),
                         ),
                       ),
                       Align(
