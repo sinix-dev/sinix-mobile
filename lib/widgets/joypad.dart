@@ -1,12 +1,16 @@
+import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:udp/udp.dart';
 
 class Joypad extends StatefulWidget {
   final void Function(Offset) onChange;
+  final ipAddr;
 
   const Joypad({
     Key key,
     @required this.onChange,
+    @required this.ipAddr,
   }) : super(key: key);
 
   JoypadState createState() => JoypadState();
@@ -30,6 +34,12 @@ class JoypadState extends State<Joypad> {
         min(60, newDelta.distance),
       ),
     );
+  }
+
+  void sendDelta(Offset offset) async {
+    var sender = await UDP.bind(Endpoint.multicast(InternetAddress(widget.ipAddr), port: Port(41431)));
+    await sender.send('JOYSTICK 01 ${offset.dx} ${offset.dy}'.codeUnits,
+        Endpoint.broadcast(port: Port(41431)));
   }
 
   Widget build(BuildContext context) {

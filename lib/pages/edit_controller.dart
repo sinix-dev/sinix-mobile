@@ -100,7 +100,7 @@ class _EditControllerState extends State<EditController> {
                   child: AbsorbPointer(
                     child: Hero(
                       tag: "joypad",
-                      child: Joypad(onChange: (Offset delta) {}),
+                      child: Joypad(ipAddr: Get.arguments, onChange: (Offset delta) {}),
                     ),
                   ),
                 ),

@@ -29,6 +29,8 @@ class _GamePageState extends State<GamePage> {
 
   final localStorage = Store.to.localStorage;
 
+  final ipAddr = Get.arguments;
+
   void setInitialOffset() {
     joypadOffset = Offset(
       double.parse(localStorage.joypadCoordinate[0]),
@@ -85,6 +87,7 @@ class _GamePageState extends State<GamePage> {
                         child: Hero(
                           tag: "joypad",
                           child: Joypad(
+                            ipAddr: ipAddr,
                             onChange: (Offset delta) {
                               var resp = {
                                 "event_type": "STICK1",
@@ -134,7 +137,7 @@ class _GamePageState extends State<GamePage> {
                             child: IconButton(
                               icon: Icon(Icons.edit),
                               onPressed: () {
-                                Get.to(EditController());
+                                Get.to(EditController(), arguments: ipAddr);
                               },
                             ),
                           )

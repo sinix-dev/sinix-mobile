@@ -135,7 +135,7 @@ class Device extends StatelessWidget {
       onTap: () async {
         final response = await Store.to.createConnection(ipAddr);
         if (response.statusCode == 200) {
-          Get.to(GamePage());
+          Get.to(GamePage(), arguments: ipAddr);
         } else {
           if (response.statusCode == 408) {
             Get.snackbar(
