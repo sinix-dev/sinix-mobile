@@ -21,7 +21,7 @@ class _DiscoverDevicesState extends State<DiscoverDevices> {
   void scan() async {
     final String ip = await Wifi.ip;
     final String subnet = ip.substring(0, ip.lastIndexOf('.'));
-    final int port = 41431;
+    final int port = 41430;
 
     final stream = NetworkAnalyzer.discover2(subnet, port);
 
@@ -135,7 +135,7 @@ class Device extends StatelessWidget {
       onTap: () async {
         final response = await Store.to.createConnection(ipAddr);
         if (response.statusCode == 200) {
-          Get.to(GamePage());
+          Get.to(GamePage(), arguments: ipAddr);
         } else {
           if (response.statusCode == 408) {
             Get.snackbar(
