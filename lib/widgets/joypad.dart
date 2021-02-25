@@ -37,7 +37,8 @@ class JoypadState extends State<Joypad> {
   }
 
   void sendDelta(Offset offset) async {
-    var sender = await UDP.bind(Endpoint.multicast(InternetAddress(widget.ipAddr), port: Port(41431)));
+    var sender = await UDP.bind(
+        Endpoint.multicast(InternetAddress(widget.ipAddr), port: Port(41431)));
     await sender.send('JOYSTICK 01 ${offset.dx} ${offset.dy}'.codeUnits,
         Endpoint.broadcast(port: Port(41431)));
   }

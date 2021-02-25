@@ -69,8 +69,9 @@ class _EditControllerState extends State<EditController> {
                 child: Text(
                   "Edit Mode",
                   style: TextStyle(
-                      fontSize: 20.0,
-                      color: Theme.of(context).secondaryHeaderColor),
+                    fontSize: 20.0,
+                    color: Theme.of(context).secondaryHeaderColor,
+                  ),
                 ),
               ),
             ),
@@ -100,7 +101,10 @@ class _EditControllerState extends State<EditController> {
                   child: AbsorbPointer(
                     child: Hero(
                       tag: "joypad",
-                      child: Joypad(ipAddr: Get.arguments, onChange: (Offset delta) {}),
+                      child: Joypad(
+                        ipAddr: Get.arguments,
+                        onChange: (Offset delta) {},
+                      ),
                     ),
                   ),
                 ),
