@@ -1,5 +1,5 @@
-name: sinix_android
-description: Joy Stick for Sinix
+name: mobile
+description: Joy Pad for Sinix
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -18,65 +18,65 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  udp: ^3.0.3
+  wifi: ^0.1.5
+  hive: ^2.0.0
+  rxdart: ^0.25.0
+  hive_flutter: ^1.0.0
+  path_provider: ^2.0.1
+  ping_discover_network: ^0.2.0+1
+  feather_icons_flutter: ^4.7.4
+  custom_refresh_indicator: ^0.9.0
   flutter:
     sdk: flutter
-  splashscreen: ^1.2.0
 
-  get: ^3.4.2
-  wifi: ^0.1.5
-  http: ^0.12.2
-  flame: ^0.26.0
-  web_socket_channel: ^1.1.0
-  flutter_launcher_icons: ^0.8.0
-  ping_discover_network: ^0.2.0+1
-  pull_to_refresh: ^1.6.1
-  feather_icons_flutter: ^4.7.4
-  shared_preferences: ^0.5.12
-  udp: ^3.0.3
-  
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.3
+  cupertino_icons: ^1.0.0
 
 dev_dependencies:
+  hive_generator: ^1.0.0
+  build_runner: ^1.11.5
   flutter_test:
     sdk: flutter
 
-flutter_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/icon/icon.png"
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
 # The following section is specific to Flutter.
 flutter:
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-  uses-material-design: true
+  # uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/
-    - assets/icon/logo_light.png
-    - assets/icon/logo_dark.png
+    - assets/light/
+    - assets/dark/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
+
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
+
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/roboto_medium.ttf
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
@@ -85,4 +85,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-

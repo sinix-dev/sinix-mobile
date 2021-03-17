@@ -1,155 +1,143 @@
-import 'package:get/get.dart';
-import 'package:wifi/wifi.dart';
-import 'package:flutter/material.dart';
-import 'package:ping_discover_network/ping_discover_network.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'dart:collection';
+import "package:flutter/material.dart";
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:ping_discover_network/ping_discover_network.dart';
+import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 
-import 'package:sinix_android/utils/sinix.dart';
-import 'package:sinix_android/utils/store.dart';
-import 'package:sinix_android/pages/game.dart';
+import '../blocs/blocs.dart';
 
-class DiscoverDevices extends StatefulWidget {
-  @override
-  _DiscoverDevicesState createState() => _DiscoverDevicesState();
-}
-
-class _DiscoverDevicesState extends State<DiscoverDevices> {
-  List<String> deviceList = [];
-  bool _isListEmpty = false;
-
-  void scan() async {
-    final String ip = await Wifi.ip;
-    final String subnet = ip.substring(0, ip.lastIndexOf('.'));
-    final int port = 41430;
-
-    final stream = NetworkAnalyzer.discover2(subnet, port);
-
-    deviceList = [];
-
-    stream.listen((NetworkAddress addr) {
-      if (addr.exists) {
-        print('Found device: ${addr.ip}');
-
-        setState(() {
-          deviceList.add(addr.ip);
-        });
-      }
-    }, onDone: () {
-      _refreshController.refreshCompleted();
-      if (deviceList.isEmpty) {
-        setState(() {
-          _isListEmpty = true;
-        });
-      } else {
-        setState(() {
-          _isListEmpty = false;
-        });
-      }
+class DiscoverPage extends StatelessWidget {
+  DiscoverPage({Key? key}) : super(key: key) {
+    Blocs.discoverBloc.getDevices();
+    Blocs.discoverBloc.loadingStatus.listen((event) {
+      print("Event $event");
+      this._isLoading = event;
     });
   }
 
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: true);
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: new Builder(
-        builder: (context) => new Container(
-          color: Theme.of(context).backgroundColor,
-          child: Padding(
-            padding: const EdgeInsets.all(35.0),
-            child: Directionality(
-              textDirection: TextDirection.ltr,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    "Available Devices",
-                    style: TextStyle(
-                      color: Theme.of(context).secondaryHeaderColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                      letterSpacing: 1.1,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Expanded(
-                    child: SmartRefresher(
-                      enablePullDown: true,
-                      enablePullUp: true,
-                      header: MaterialClassicHeader(
-                        color: Colors.blue,
-                      ),
-                      controller: _refreshController,
-                      onRefresh: scan,
-                      child: _isListEmpty
-                          ? Text(
-                              'No Sinix servers found',
-                              style: TextStyle(fontSize: 17),
-                            )
-                          : ListView.builder(
-                              itemCount: deviceList.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Device(deviceList[index]);
-                              },
-                            ),
-                    ),
-                  ),
-                ],
+    return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
+      body: Container(
+        padding: const EdgeInsets.all(36.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Available Devices",
+              style: TextStyle(
+                color: Theme.of(context).secondaryHeaderColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                letterSpacing: 1.1,
               ),
             ),
-          ),
+            SizedBox(
+              height: 18,
+            ),
+            StreamBuilder<UnmodifiableListView<NetworkAddress>>(
+              stream: Blocs.discoverBloc.devices,
+              initialData: UnmodifiableListView<NetworkAddress>([]),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Container();
+                }
+                return CustomRefreshIndicator(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: 100,
+                    ),
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: snapshot.data!
+                          .map((val) => _buildItem(context, val))
+                          .toList(),
+                    ),
+                  ),
+                  builder: (
+                    BuildContext context,
+                    Widget child,
+                    IndicatorController controller,
+                  ) {
+                    return AnimatedBuilder(
+                      animation: controller,
+                      builder: (BuildContext context, _) {
+                        return Stack(
+                          alignment: Alignment.topCenter,
+                          children: <Widget>[
+                            if (!controller.isIdle)
+                              Positioned(
+                                top: 35.0 * controller.value,
+                                child: SizedBox(
+                                  height: 30,
+                                  width: 30,
+                                  child: CircularProgressIndicator(
+                                    value: !controller.isLoading
+                                        ? controller.value.clamp(0.0, 1.0)
+                                        : null,
+                                  ),
+                                ),
+                              ),
+                            Transform.translate(
+                              offset: Offset(0, 100.0 * controller.value),
+                              child: child,
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  onRefresh: () async {
+                    print("on refresh");
+                    Blocs.discoverBloc.getDevices();
+                    while (true) {
+                      await Future.delayed(Duration(seconds: 1));
+
+                      if (!_isLoading) {
+                        break;
+                      }
+                    }
+                  },
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
   }
-}
 
-class Device extends StatelessWidget {
-  final ipAddr;
-
-  Device(this.ipAddr);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Row(
-        children: <Widget>[
-          Icon(FeatherIcons.cast),
-          SizedBox(
-            width: 10.0,
-          ),
-          Text(
-            ipAddr,
-            style: TextStyle(
-              color: Theme.of(context).secondaryHeaderColor,
-              fontSize: 18,
+  Widget _buildItem(BuildContext context, NetworkAddress addr) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 8.0),
+      child: InkWell(
+        splashColor: Color(0x00FFFFFF),
+        highlightColor: Color(0x00FFFFFF),
+        child: Row(
+          children: <Widget>[
+            Icon(
+              FeatherIcons.cast,
+              size: 26,
             ),
-          ),
-        ],
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(
+              addr.ip,
+              style: TextStyle(
+                fontSize: 22,
+              ),
+            ),
+          ],
+        ),
+        onTap: () {
+          Blocs.discoverBloc.connect(addr.ip);
+          Navigator.pushNamed(context, '/controller');
+        },
       ),
-      onTap: () async {
-        final response = await Store.to.createConnection(ipAddr);
-        if (response.statusCode == 200) {
-          Get.to(GamePage(), arguments: ipAddr);
-        } else {
-          if (response.statusCode == 408) {
-            Get.snackbar(
-              'Connection Timeout',
-              'Selected server maybe dead!',
-            );
-          } else if (response.statusCode == 502) {
-            Get.snackbar(
-              'Connection Error',
-              'Couldn\'t found server with address: $ipAddr',
-            );
-          }
-        }
-      },
     );
   }
 }
