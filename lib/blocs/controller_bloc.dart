@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:hive/hive.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -9,6 +7,16 @@ class ControllerBloc {
   Stream<List<ControllerModel>> get controller => _controller.stream;
 
   final _controller = BehaviorSubject<List<ControllerModel>>.seeded([]);
+  final _defaultControllerSetup = [
+    ControllerModel(
+      position: ControllerOffset(440, 140),
+      widgetType: ControllerWidgetType.QUAD_GROUP,
+    ),
+    ControllerModel(
+      position: ControllerOffset(130, 140),
+      widgetType: ControllerWidgetType.JOYSTICK,
+    ),
+  ];
 
   ControllerBloc() {
     Hive.registerAdapter(ControllerModelAdapter());
@@ -16,11 +24,31 @@ class ControllerBloc {
     Hive.registerAdapter(ControllerWidgetTypeAdapter());
 
     init();
+    update();
+  }
+
+  Future<Box<ControllerModel>> box() async {
+    Box<ControllerModel> controllerBox;
+
+    try {
+      controllerBox = await Hive.openBox<ControllerModel>("controllerWidgets");
+    } catch (e) {
+      controllerBox = Hive.box<ControllerModel>("controllerWidgets");
+    }
+
+    return controllerBox;
   }
 
   void init() async {
-    var controllerBox =
-        await Hive.openBox<ControllerModel>("controllerWidgets");
+    Box<ControllerModel> controllerBox = await box();
+
+    if (controllerBox.values.length == 0) {
+      controllerBox.putAll(_defaultControllerSetup.asMap());
+    }
+  }
+
+  void update() async {
+    Box<ControllerModel> controllerBox = await box();
     List<ControllerModel> controllerStack = [];
 
     for (var index = 0; index < controllerBox.length; index++) {
@@ -29,13 +57,5 @@ class ControllerBloc {
     }
 
     _controller.add(controllerStack);
-  }
-
-  void update(int index, ControllerModel controller) {
-    var box = Hive.box("controllerWidgets");
-    box.put(
-      "quad_group_0",
-      controller,
-    );
   }
 }

@@ -36,7 +36,7 @@ class ControllerModel {
   final ControllerWidgetType widgetType;
 
   @HiveField(1)
-  final ControllerOffset position;
+  ControllerOffset position;
 
   ControllerModel({
     required this.widgetType,

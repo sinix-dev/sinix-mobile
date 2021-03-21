@@ -7,7 +7,6 @@ import 'package:hive/hive.dart';
 import 'blocs/blocs.dart';
 import 'utils/theme.dart';
 import 'utils/config.dart';
-import 'models/controller.dart';
 
 import 'pages/discover.dart';
 import 'pages/onboarding.dart';
@@ -19,6 +18,7 @@ void main() async {
 
   final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
 
+  print(appDocumentDir);
   Hive.init(appDocumentDir.path);
 
   // set preferred orientations (landscape only)
