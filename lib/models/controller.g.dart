@@ -36,6 +36,9 @@ class ControllerWidgetTypeAdapter extends TypeAdapter<ControllerWidgetType> {
       case ControllerWidgetType.BUTTON:
         writer.writeByte(2);
         break;
+      case ControllerWidgetType.GYRO_WIDGET:
+        writer.writeByte(3);
+        break;
     }
   }
 
