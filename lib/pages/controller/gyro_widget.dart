@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:mobile/blocs/blocs.dart';
-import 'package:mobile/models/controller.dart';
 import 'package:sensors/sensors.dart';
+
+import '../../blocs/blocs.dart';
+import '../../models/controller.dart';
 
 class GyroWidget extends StatefulWidget {
   final ControllerModel controller;
