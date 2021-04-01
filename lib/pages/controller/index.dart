@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/pages/controller/gyro_widget.dart';
 
 import 'joystick.dart';
 import 'quad_group.dart';
@@ -18,6 +19,8 @@ class ControllerWidget extends StatelessWidget {
         return QuadGroupWidget(controller: controller);
       case ControllerWidgetType.JOYSTICK:
         return JoystickWidget(controller: controller);
+      case ControllerWidgetType.GYRO_WIDGET:
+        return GyroWidget(controller: controller);
       default:
         return Container();
     }

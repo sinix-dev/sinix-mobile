@@ -13,6 +13,9 @@ enum ControllerWidgetType {
 
   @HiveField(2)
   BUTTON,
+
+  @HiveField(3)
+  GYRO_WIDGET
 }
 
 @HiveType(typeId: 2)
